@@ -1,0 +1,15 @@
+.logo-icon--small {
+    padding : 10px;
+    height: 40px;
+    pointer-events: none;
+}
+
+.logo-icon--regular {
+    height: 80px;
+    pointer-events: none;
+}
+
+.logo-icon--big {
+    height: 120px;
+    pointer-events: none;
+}
