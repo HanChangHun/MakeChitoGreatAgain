@@ -1,7 +1,7 @@
 import React from 'react';
 import {arrayOf, shape, string} from "prop-types";
 import StyledNavigation from "../Navigation/Navigation.styles";
-import {Link} from "../../atoms/Link/Link";
+import {Link} from "../../1.atoms/Link/Link";
 
 
 export const Navigation = ({items, name}) => {

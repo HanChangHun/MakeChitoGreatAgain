@@ -1,7 +1,7 @@
 import React from 'react';
 import StyledHeader from "../Header/Header.styles";
-import {Navigation} from "../../molecules/Navigation/Navigation";
-import {Logo} from "../../atoms/Logo/Logo";
+import {Navigation} from "../../2.molecules/Navigation/Navigation";
+import {Logo} from "../../1.atoms/Logo/Logo";
 
 
 export const Header = ({items1, items2}) => {

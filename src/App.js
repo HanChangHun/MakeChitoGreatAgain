@@ -4,7 +4,7 @@ import {
     Switch,
     Route
 } from "react-router-dom";
-import {loginPage2} from "./components/pages/LoginPage/LoginPage.stories"
+import {loginPage2} from "./components/5.pages/LoginPage/LoginPage.stories"
 
 function App() {
     return (

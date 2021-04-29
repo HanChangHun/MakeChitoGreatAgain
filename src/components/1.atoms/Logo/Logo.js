@@ -2,7 +2,7 @@ import React from 'react';
 import {string} from 'prop-types';
 import './Logo.css';
 
-import IconLogo from "../../assets/Logo.svg"
+import IconLogo from "../assets/Logo.svg"
 
 const Icons = {
     "Logo": IconLogo,

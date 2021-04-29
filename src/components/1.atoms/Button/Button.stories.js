@@ -9,7 +9,7 @@ const buttonClicked = e => {
 };
 
 export default {
-  title: 'atoms/Button',
+  title: '1.atoms/Button',
   component: Button,
   argTypes: {
     backgroundColor: { control: 'color' },

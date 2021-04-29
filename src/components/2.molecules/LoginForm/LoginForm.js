@@ -1,9 +1,9 @@
 import React from 'react';
 
-import {InputText} from "../../atoms/InputText/InputText";
-import Button from "../../atoms/Button/Button";
-import {Shape} from "../../atoms/Shape/Shape";
-import {Link} from "../../atoms/Link/Link";
+import {InputText} from "../../1.atoms/InputText/InputText";
+import Button from "../../1.atoms/Button/Button";
+import {Shape} from "../../1.atoms/Shape/Shape";
+import {Link} from "../../1.atoms/Link/Link";
 import StyledLoginForm from "./LoginForm.styles";
 
 export const LoginForm = () => {

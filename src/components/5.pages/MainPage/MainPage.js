@@ -1,7 +1,7 @@
 import React from 'react';
-import {Header} from "../../organisms/Header/Header"
+import {Header} from "../../3.organisms/Header/Header"
 import {items_login} from "./MainPage-data.json"
-import {Footer} from "../../organisms/Footer/Footer";
+import {Footer} from "../../3.organisms/Footer/Footer";
 import StyledMainPage from "./MainPage.styles";
 
 export const MainPage = () => {

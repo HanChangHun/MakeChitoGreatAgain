@@ -1,9 +1,9 @@
 import React from 'react';
-import {Header} from "../../organisms/Header/Header"
+import {Header} from "../../3.organisms/Header/Header"
 import {items_login} from "./LoginPage-data.json"
-import {Footer} from "../../organisms/Footer/Footer";
-import {Logo} from "../../atoms/Logo/Logo";
-import {LoginForm} from "../../molecules/LoginForm/LoginForm";
+import {Footer} from "../../3.organisms/Footer/Footer";
+import {Logo} from "../../1.atoms/Logo/Logo";
+import {LoginForm} from "../../2.molecules/LoginForm/LoginForm";
 import StyledLoginPage from "./LoginPage.styles";
 
 export const LoginPage = () => {

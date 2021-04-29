@@ -1,6 +1,6 @@
 import React from 'react';
 import StyledFooter from "../Footer/Footer.styles";
-import {MultiLineText, Text} from "../../atoms/Text/Text";
+import {MultiLineText, Text} from "../../1.atoms/Text/Text";
 
 
 export const Footer = () => {
