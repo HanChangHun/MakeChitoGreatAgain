@@ -4,14 +4,16 @@ import {
     Switch,
     Route
 } from "react-router-dom";
-import {loginPage2} from "./components/5.pages/LoginPage/LoginPage.stories"
+import {StartPage} from "./components/5.pages/StartPage/StartPage";
+import {MainPage} from "./components/5.pages/MainPage/MainPage";
 
 function App() {
     return (
         <Router>
-            <div>
+            <div className={"body"}>
                 <Switch>
-                    <Route exact path="/login2" component={loginPage2}/>
+                    <Route exact path="/start" component={StartPage}/>
+                    <Route exact path="/main" component={MainPage}/>
                 </Switch>
             </div>
         </Router>

@@ -2,7 +2,7 @@ import React from 'react';
 import {InputText} from './InputText';
 
 export default {
-    title: 'Atoms/InputText',
+    title: '1.atoms/InputText',
     component: InputText,
     argTypes: {
         backgroundColor: { control: 'color' },
@@ -11,7 +11,14 @@ export default {
 
 const Template = (args) => <InputText {...args} />;
 
-export const loginInput = Template.bind({});
-loginInput.args = {
-    placeholder:"아이디"
+export const basicInput = Template.bind({});
+basicInput.args = {
+    placeholder:"Type your ID"
+};
+
+export const passwdInput = Template.bind({});
+passwdInput.args = {
+    type:"password",
+    placeholder:"Type your Passwd"
+
 };

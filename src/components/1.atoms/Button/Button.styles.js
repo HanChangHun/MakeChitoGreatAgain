@@ -1,41 +1,44 @@
 import styled from "styled-components";
 
-const buttonBackground = props => {
-    // Fallback value if we can't get access to props
-    if (!props) return "#a4d65e";
-    // If no variant is specified, return the primary colour in our theme
-    if (!props.variant) return "#a4d65e";
+const buttonFontSize = props => {
+    if (!props) return "72px";
+    if (!props.variant) return "72px";
 
-    // Dynamically determine the background colour based on props
-    let colour;
-    switch (props.variant) {
-        case "primary":
-            colour = "#a4d65e";
-            break;
-        default:
-            colour = "#a4d65e";
-            break;
+    if (props.variant === "primary") {
+        return "72px";
+    } else {
+        return "56px";
     }
+};
 
-    return colour;
+const buttonPadding = props => {
+    if (!props) return "32px 64px";
+    if (!props.variant) return "32px 64px";
+
+    if (props.variant === "primary") {
+        return "32px 64px";
+    } else {
+        return "32px 40px";
+    }
 };
 
 const StyledButton = styled.button`
-  padding: 5px;
+  //display: flex;
+  flex-direction: row;
+  justify-content: center;
   align-items: center;
-  text-align: center;
-  background-color: ${props => buttonBackground(props)};
-  border-radius: 5px;
-  border: solid 1px #12af67;
+  padding: ${props => buttonPadding(props)};
+  background-color: #55AB67;
+  border-radius: 36px;
+  border: 0;
   cursor: pointer;
-  line-height: 1;
-  outline: none;
-  text-decoration: none;
-  transition: all 0.15s ease;
-  white-space: nowrap;
+  line-height: 100%;
+  white-space: normal;
   font-family: S-Core, serif;
-  font-weight: 400;
-  font-size: 30px;
+  font-weight: 600;
+  font-size: ${props => buttonFontSize(props)};
+  text-transform: capitalize;
+  color: white;
 
   .button__icon {
     display: inline-block;
@@ -44,23 +47,3 @@ const StyledButton = styled.button`
 `;
 
 export default StyledButton;
-export const StyledToggle = styled.a`
-  height: 30px;
-  text-align: center;
-  color:#2e2a2b;
-  background-color: #e7e8e8;
-  border-radius: 12px;
-  border: 0;
-  padding: 6px 18px 6px 18px;
-  cursor: pointer;
-  line-height: normal;
-  text-decoration: none;
-  font-family: S-Core, serif;
-  font-weight: 500;
-  font-size: 14px;
-  :hover{
-    color:green;
-    text-decoration: none;
-  }
-`;
-export const StyledLinkButton = styled(StyledButton).attrs({as: "a"})``;

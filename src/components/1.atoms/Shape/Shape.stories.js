@@ -2,7 +2,7 @@ import React from 'react';
 import {Shape} from './Shape';
 
 export default {
-    title: 'Atoms/Shape',
+    title: '1.atoms/Shape',
     component: Shape,
     argTypes: {
         backgroundColor: { control: 'color' },
