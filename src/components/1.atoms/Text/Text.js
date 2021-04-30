@@ -5,7 +5,6 @@ import StyledText, {StyledLinkedText} from "./Text.styles";
 
 export const Text = ({text, weight, size, color}) => {
     return (<StyledText style={{
-        fontFamily: "S-Core",
         fontWeight: weight,
         fontSize: size,
         color: color
