@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import MainPageBg from "../../0.particle/BgImages/MainPageBg.png"
 
 const StyledMainPage = styled.div`
   backgroundSize: cover;
@@ -7,6 +7,8 @@ const StyledMainPage = styled.div`
   display: -ms-flex;
   display: -webkit-flex;
   display: flex;
+  background: url(${MainPageBg}) no-repeat center fixed;
+  height: 100vh;
 
   .main-block {
     flex: 1;
@@ -14,11 +16,18 @@ const StyledMainPage = styled.div`
     display: flex;
     justify-content: space-around;
     flex-direction: column;
+
+    img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
   }
 
   .buttons1 {
     display: flex;
     justify-content: center;
+
     button {
       padding: 0;
       height: 140px;
@@ -33,6 +42,7 @@ const StyledMainPage = styled.div`
   .buttons2 {
     display: flex;
     justify-content: center;
+
     button {
       height: 140px;
       width: 525px;
@@ -43,6 +53,13 @@ const StyledMainPage = styled.div`
     }
   }
 
+  .status {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+  }
 
 `;
 
