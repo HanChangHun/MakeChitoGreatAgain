@@ -5,8 +5,6 @@ import mainChito from "../../0.particle/Char/MainChar.png";
 import MainPageBg from "../../0.particle/BgImages/MainPageBg.png"
 import {Text} from "../../1.atoms/Text/Text";
 
-
-
 export const MainPage = () => {
     let timePoint = 10;
     let grade = 0.0;
