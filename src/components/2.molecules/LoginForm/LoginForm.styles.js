@@ -7,20 +7,46 @@ const StyledLoginForm = styled.div`
   width: 720px;
   height: 840px;
   padding: 0 85px;
-  input {width:550px; height: 75px;}
-  Button {height: 120px;}
+
+  .close {
+    float: right;
+    font-size: 50px;
+  }
+
+  input {
+    width: 550px;
+    height: 75px;
+  }
+
   .buttons {
     display: flex;
+    align-items: flex-start;
     margin: 65px 0;
+    text-align: center;
+
+    .signup {
+      height: 120px;
+      flex: 2;
+      margin-right: 10px;
+    }
+
+    .login {
+      height: 120px;
+      flex: 1;
+    }
   }
-  .inner-form{
+
+  .inner-form {
+    padding-top: 50px;
     width: 550px;
   }
+
   .login {
-    flex:1;
+    flex: 1;
   }
+
   .signup {
-    flex:1;
+    flex: 1;
   }
 `;
 

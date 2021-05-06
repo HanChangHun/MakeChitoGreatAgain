@@ -4,11 +4,15 @@ import {LinkedText, Text} from "../../1.atoms/Text/Text";
 import {InputText} from "../../1.atoms/InputText/InputText";
 import {Button} from "../../1.atoms/Button/Button";
 import {Shape} from "../../1.atoms/Shape/Shape";
+import {SignupForm} from "../SignupForm/SignupForm";
 import axios from "axios";
+import {StartPage} from "../../5.pages/StartPage/StartPage";
 
 export const LoginForm = () => {
     const [Id, setId] = useState("")
     const [Passwd, setPasswd] = useState("")
+    const [Signup, setSignup] = useState(false);
+    const [Close, setClose] = useState(false);
 
     const onIdHandler = (event) => {
         setId(event.currentTarget.value)
@@ -27,26 +31,43 @@ export const LoginForm = () => {
         }
         console.log(body)
 
-        axios.post('/api/authenticate',null, {params: body})
+        axios.post('/api/authenticate', null, {params: body})
             .then(response => console.log(response.data))
     }
 
-    return (<StyledLoginForm>
-        <div className={"inner-form"}>
-            <Text text={"Login"} weight={700} size={"80px"}/>
-            <br/>
-            <Text text={"ID"} weight={700} size={"48px"}/>
-            <InputText placeholder={""} value={Id} onChange={onIdHandler} />
-            <Text text={"Password"} weight={700} size={"48px"}/>
-            <InputText placeholder={""} type={"Password"} value={Passwd} onChange={onPasswdHandler} />
-            <div className={"buttons"}>
-                <Button className={"signup"} label={"Sign Up"} variant={"secondary"}/>
-                <Button className={"login"} label={"Login"} variant={"secondary"} onClick={onLoginHandler} />
+    const onSignupHandler = (event) => {
+        event.preventDefault();
+        setSignup(true)
+    }
+    const onCloseHandler = (event) => {
+        event.preventDefault();
+        setClose(true)
+    }
+
+    if (!Signup && !Close) {
+        return (<StyledLoginForm>
+            <div className={"inner-form"}>
+                <span className="close" onClick={onCloseHandler}>
+                  &times;
+                </span>
+                <Text text={"Login"} weight={700} size={"80px"}/>
+                <br/>
+                <Text text={"ID"} weight={700} size={"48px"}/>
+                <InputText placeholder={""} value={Id} onChange={onIdHandler}/>
+                <Text text={"Password"} weight={700} size={"48px"}/>
+                <InputText placeholder={""} type={"Password"} value={Passwd} onChange={onPasswdHandler}/>
+                <div className={"buttons"}>
+                    <Button className={"signup"} label={"Sign Up"} variant={"secondary"} onClick={onSignupHandler}/>
+                    <Button className={"login"} label={"Login"} variant={"secondary"} onClick={onLoginHandler}/>
+                </div>
+                <Shape/>
+                <LinkedText text={"Forgot ID/Password?"}/>
             </div>
-            <Shape />
-            <LinkedText text={"Forgot ID/Password?"} />
-        </div>
-    </StyledLoginForm>);
+        </StyledLoginForm>);
+    } else if (Close)
+        return (<StartPage/>)
+    else
+        return (<SignupForm/>);
 };
 
 LoginForm.propTypes = {};

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import './App.css';
 import {
     BrowserRouter as Router,
@@ -16,10 +16,10 @@ function App() {
         <Router>
             <div className={"body"}>
                 <Switch>
-                    <Route exact path="/start" component={StartPage}/>
+                    <Route exact path="/" component={StartPage}/>
                     <Route exact path="/main" component={MainPage}/>
                     <Route exact path="/login" component={LoginForm}/>
-                    <Route exact path="/" component={SignupForm}/>
+                    <Route exact path="/signup" component={SignupForm}/>
                 </Switch>
             </div>
         </Router>

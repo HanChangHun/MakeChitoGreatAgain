@@ -10,12 +10,21 @@ const StyledSignupForm = styled.div`
   width: 720px;
   height: 840px;
   padding: 0 85px;
-  //::-webkit-scrollbar {
-  //  display: none;
-  //}
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  .close {
+    float: right;
+    margin-top: 10px;
+    font-size: 50px;
+  }
+
   p {
     margin-top: 50px;
   }
+
   input {
     margin-top: 12px;
     width: 550px;

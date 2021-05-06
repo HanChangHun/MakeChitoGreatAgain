@@ -6,8 +6,6 @@ const StyledStartPage = styled.div`
   background: url(${StartPageBg}) no-repeat center fixed;
   backgroundSize: cover;
   overflow: hidden;
-  display: -ms-flex;
-  display: -webkit-flex;
   display: flex;
   height: 100vh;
 
@@ -15,9 +13,10 @@ const StyledStartPage = styled.div`
     flex: 1;
     backdrop-filter: blur(5px);
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
-    
+
     img {
       display: block;
       margin-left: auto;
@@ -25,7 +24,8 @@ const StyledStartPage = styled.div`
     }
   }
 
-  .buttons {
+  .start-buttons {
+    margin-top: 100px;
     display: flex;
 
     button {
@@ -41,8 +41,6 @@ const StyledStartPage = styled.div`
       margin-left: 140px;
     }
   }
-
-
 `;
 
 export default StyledStartPage;
