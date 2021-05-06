@@ -4,7 +4,7 @@ import StyledButton from "./Button.styles";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-const Button = ({label, onClick, variant, className}) => {
+export const Button = ({label, onClick, variant, className}) => {
     return (
         <StyledButton className={className} onClick={onClick} variant={variant}>
             {label}
@@ -24,5 +24,3 @@ Button.defaultProps = {
     label: "Button text",
     variant: "primary"
 };
-
-export default Button;

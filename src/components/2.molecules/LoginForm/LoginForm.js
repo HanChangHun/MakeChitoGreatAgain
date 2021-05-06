@@ -2,7 +2,7 @@ import React from 'react';
 import StyledLoginForm from "./LoginForm.styles";
 import {LinkedText, Text} from "../../1.atoms/Text/Text";
 import {InputText} from "../../1.atoms/InputText/InputText";
-import Button from "../../1.atoms/Button/Button";
+import {Button} from "../../1.atoms/Button/Button";
 import {Shape} from "../../1.atoms/Shape/Shape";
 
 export const LoginForm = () => {

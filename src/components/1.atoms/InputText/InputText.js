@@ -2,8 +2,8 @@ import React from 'react';
 import {string} from 'prop-types';
 import StyledInputText from "./InputText.styles";
 
-export const InputText = ({type, placeholder}) => {
-    return (<StyledInputText type={type} placeholder={placeholder} />);
+export const InputText = ({type, placeholder, value, onChange}) => {
+    return (<StyledInputText type={type} placeholder={placeholder} value ={value} onChange={onChange} />);
 };
 
 InputText.propTypes = {

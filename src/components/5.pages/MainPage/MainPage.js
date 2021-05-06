@@ -1,6 +1,6 @@
 import React from 'react';
 import StyledStartPage from "./MainPage.styles";
-import Button from "../../1.atoms/Button/Button";
+import {Button} from "../../1.atoms/Button/Button";
 import mainChito from "../../0.particle/Char/MainChar.png";
 import {Text} from "../../1.atoms/Text/Text";
 
