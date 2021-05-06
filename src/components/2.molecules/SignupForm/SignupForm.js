@@ -32,14 +32,14 @@ export const SignupForm = (props) => {
 
         let body = {
             username: Id,
-            password: Passwd,
+            password: Passwd
             // passwordConf: PasswdConf,
             // email: Email,
         }
         console.log(body)
 
-        const req = axios.post('/api/register', body)
-            .then(response => response.data)
+        const req = axios.post('/api/register',null, {params: body})
+            .then(response => console.log(response.data))
     }
 
     return (<StyledSignupForm>
