@@ -3,8 +3,9 @@ import StyledStartPage from "./MainPage.styles";
 import {Button} from "../../1.atoms/Button/Button";
 import mainChito from "../../0.particle/Char/MainChar.png";
 import {Text} from "../../1.atoms/Text/Text";
+import {withRouter} from "react-router-dom";
 
-export const MainPage = () => {
+function MainPage() {
     let timePoint = 10;
     let grade = 0.0;
     let int = 10;
@@ -13,7 +14,7 @@ export const MainPage = () => {
 
     return (<StyledStartPage>
         <div className={"main-block"}>
-            <img src={mainChito}/>
+            <img src={mainChito} alt={"chito"} />
             <div className={"buttons1"}>
                 <Button className={"study-btn"} label={"Study"} variant={"secondary"}/>
                 <Button className={"workout-btn"} label={"Workout"} variant={"secondary"}/>
@@ -32,9 +33,10 @@ export const MainPage = () => {
             </div>
         </div>
     </StyledStartPage>);
-
-};
+}
 
 MainPage.propTypes = {};
 
 MainPage.defaultProps = {};
+
+export default withRouter(MainPage);

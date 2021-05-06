@@ -1,12 +1,14 @@
 import React, {useState} from 'react';
+import { useDispatch } from 'react-redux';
+import { registerUser } from '../../../_actions/user_action';
 import StyledSignupForm from "./SignupForm.styles";
 import {Text} from "../../1.atoms/Text/Text";
 import {InputText} from "../../1.atoms/InputText/InputText";
 import {Button} from "../../1.atoms/Button/Button";
-import axios from "axios";
-import {LoginForm} from "../LoginForm/LoginForm";
+import LoginForm from "../LoginForm/LoginForm";
 
 export const SignupForm = () => {
+    const dispatch = useDispatch();
 
     const [Id, setId] = useState("")
     const [Passwd, setPasswd] = useState("")
@@ -32,16 +34,23 @@ export const SignupForm = () => {
     const onSignupHandler = (event) => {
         event.preventDefault();
 
+        if (Passwd !== PasswdConf){
+            return alert('Password and Password Configuration are not same.')
+        }
+
         let body = {
             username: Id,
             password: Passwd,
-            passwordConf: PasswdConf,
             nickname: Nickname,
         }
-        console.log(body)
-
-        axios.post('/api/signup', null, {params: body})
-            .then(response => console.log(response.data))
+        dispatch(registerUser(body))
+            .then(response => {
+                if (response.payload.authorities) {
+                    setClose(true)
+                } else {
+                    alert("Failed to sign up")
+                }
+            })
     }
     const onCloseHandler = (event) => {
         event.preventDefault();

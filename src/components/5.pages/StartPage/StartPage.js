@@ -2,10 +2,11 @@ import React, {useState} from 'react';
 import StyledStartPage from "./StartPage.styles";
 import {Button as MyButton} from "../../1.atoms/Button/Button";
 import chito from "../../0.particle/Char/StartChar.png";
-import {LoginForm} from "../../2.molecules/LoginForm/LoginForm";
+import LoginForm from "../../2.molecules/LoginForm/LoginForm";
+import {withRouter} from "react-router-dom";
 
 
-export const StartPage = () => {
+function StartPage(){
     const [Login, setLogin] = useState(false)
 
     const loginButtonClicked = () => {
@@ -32,3 +33,5 @@ export const StartPage = () => {
         </StyledStartPage>)
     }
 }
+
+export default withRouter(StartPage);

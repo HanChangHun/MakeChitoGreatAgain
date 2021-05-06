@@ -5,10 +5,8 @@ import {
     Switch,
     Route
 } from "react-router-dom";
-import {StartPage} from "./components/5.pages/StartPage/StartPage";
-import {LoginForm} from "./components/2.molecules/LoginForm/LoginForm";
-import {MainPage} from "./components/5.pages/MainPage/MainPage";
-import {SignupForm} from "./components/2.molecules/SignupForm/SignupForm";
+import StartPage from "./components/5.pages/StartPage/StartPage";
+import MainPage from "./components/5.pages/MainPage/MainPage";
 
 
 function App() {
@@ -18,8 +16,6 @@ function App() {
                 <Switch>
                     <Route exact path="/" component={StartPage}/>
                     <Route exact path="/main" component={MainPage}/>
-                    <Route exact path="/login" component={LoginForm}/>
-                    <Route exact path="/signup" component={SignupForm}/>
                 </Switch>
             </div>
         </Router>
