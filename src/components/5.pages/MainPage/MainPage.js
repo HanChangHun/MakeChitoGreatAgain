@@ -6,6 +6,7 @@ import {Text} from "../../1.atoms/Text/Text";
 import {withRouter} from "react-router-dom";
 
 function MainPage() {
+    let semester = "1-1";
     let timePoint = 10;
     let grade = 0.0;
     let int = 10;
@@ -14,6 +15,9 @@ function MainPage() {
 
     return (<StyledStartPage>
         <div className={"main-block"}>
+            <div className="logout">
+                <Button label={"Logout"} variant={"secondary"} />
+            </div>
             <img src={mainChito} alt={"chito"} />
             <div className={"buttons1"}>
                 <Button className={"study-btn"} label={"Study"} variant={"secondary"}/>
@@ -25,6 +29,7 @@ function MainPage() {
                 <Button className={"board-btn"} label={"Final Exam"} variant={"secondary"}/>
             </div>
             <div className={"status"}>
+                <Text text={"Semester - " + semester} size={"48px"} weight={700} color={"white"}/>
                 <Text text={"Time Point: " + timePoint} size={"48px"} weight={700} color={"white"}/>
                 <Text text={"Grade: " + grade} size={"48px"} weight={700} color={"white"}/>
                 <Text text={"Intelligence: " + int} size={"48px"} weight={700} color={"white"}/>

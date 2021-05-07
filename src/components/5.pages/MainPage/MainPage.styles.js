@@ -10,6 +10,11 @@ const StyledMainPage = styled.div`
   background: url(${MainPageBg}) no-repeat center fixed;
   height: 100vh;
 
+  .logout {
+    margin-left: auto;
+    margin-right: 20px;
+  }
+  
   .main-block {
     flex: 1;
     backdrop-filter: blur(5px);
