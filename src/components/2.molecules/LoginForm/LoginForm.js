@@ -8,8 +8,9 @@ import {Button} from "../../1.atoms/Button/Button";
 import {Shape} from "../../1.atoms/Shape/Shape";
 import {SignupForm} from "../SignupForm/SignupForm";
 import StartPage from "../../5.pages/StartPage/StartPage";
+import {withRouter} from "react-router-dom";
 
-export function LoginForm(props) {
+function LoginForm(props) {
     const dispatch = useDispatch();
 
     const [Id, setId] = useState("")
@@ -81,4 +82,4 @@ LoginForm.propTypes = {};
 
 LoginForm.defaultProps = {};
 
-export default LoginForm;
+export default withRouter(LoginForm);

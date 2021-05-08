@@ -1,6 +1,7 @@
 import React from 'react';
 import {applyMiddleware, createStore} from 'redux';
 import {Provider} from "react-redux";
+import {BrowserRouter as Router} from "react-router-dom";
 import promiseMiddleware from 'redux-promise';
 import ReduxThunk from 'redux-thunk';
 import Reducer from "../src/_reducers";
@@ -14,7 +15,9 @@ export const decorators = [
                 window.__REDUX_DEVTOOLS_EXTENSION__ &&
                 window.__REDUX_DEVTOOLS_EXTENSION__()
             )}>
-            <Story/>
+            <Router>
+                <Story/>
+            </Router>
         </Provider>
     ),
 ];

@@ -3,6 +3,7 @@ import StyledStartPage from "./StartPage.styles";
 import {Button as MyButton} from "../../1.atoms/Button/Button";
 import chito from "../../0.particle/Char/StartChar.png";
 import LoginForm from "../../2.molecules/LoginForm/LoginForm";
+import {withRouter} from "react-router-dom";
 
 
 function StartPage(){
@@ -33,4 +34,4 @@ function StartPage(){
     }
 }
 
-export default StartPage;
+export default withRouter(StartPage);
