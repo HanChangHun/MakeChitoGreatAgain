@@ -1,5 +1,5 @@
 import React from 'react';
-import {StartPage} from './StartPage';
+import StartPage from './StartPage';
 
 export default {
     title: '5.pages/StartPage',

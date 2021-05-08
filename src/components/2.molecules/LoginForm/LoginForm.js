@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import {withRouter} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
 import {loginUser} from '../../../_actions/user_action';
 import StyledLoginForm from "./LoginForm.styles";
@@ -10,7 +9,7 @@ import {Shape} from "../../1.atoms/Shape/Shape";
 import {SignupForm} from "../SignupForm/SignupForm";
 import StartPage from "../../5.pages/StartPage/StartPage";
 
-function LoginForm(props) {
+export function LoginForm(props) {
     const dispatch = useDispatch();
 
     const [Id, setId] = useState("")
@@ -82,4 +81,4 @@ LoginForm.propTypes = {};
 
 LoginForm.defaultProps = {};
 
-export default withRouter(LoginForm);
+export default LoginForm;

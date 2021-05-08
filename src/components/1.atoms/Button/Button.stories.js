@@ -1,11 +1,6 @@
 import React from 'react';
 
-import Button from './Button';
-
-const buttonClicked = e => {
-  e.preventDefault();
-  alert("Hello");
-};
+import {Button} from './Button';
 
 export default {
   title: '1.atoms/Button',

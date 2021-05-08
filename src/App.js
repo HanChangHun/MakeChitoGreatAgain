@@ -3,7 +3,8 @@ import './App.css';
 import {
     BrowserRouter as Router,
     Switch,
-    Route
+    Route,
+    withRouter
 } from "react-router-dom";
 import StartPage from "./components/5.pages/StartPage/StartPage";
 import MainPage from "./components/5.pages/MainPage/MainPage";
@@ -14,8 +15,8 @@ function App() {
         <Router>
             <div className={"body"}>
                 <Switch>
-                    <Route exact path="/" component={StartPage}/>
-                    <Route exact path="/main" component={MainPage}/>
+                    <Route exact path="/" component={withRouter(StartPage)}/>
+                    <Route exact path="/main" component={withRouter(MainPage)}/>
                 </Switch>
             </div>
         </Router>
