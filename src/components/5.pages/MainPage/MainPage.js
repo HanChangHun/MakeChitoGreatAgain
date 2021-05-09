@@ -5,7 +5,9 @@ import mainChito from "../../0.particle/Char/MainChar.png";
 import {Text} from "../../1.atoms/Text/Text";
 import {withRouter} from "react-router-dom";
 
-function MainPage() {
+
+
+function MainPage(props) {
     let semester = "1-1";
     let timePoint = 10;
     let grade = 0.0;
@@ -13,10 +15,14 @@ function MainPage() {
     let health = 10;
     let speech = 10;
 
+    function onLogoutHandler() {
+        props.history.push("/");
+    }
+
     return (<StyledStartPage>
         <div className={"main-block"}>
             <div className="logout">
-                <Button label={"Logout"} variant={"secondary"} />
+                <Button label={"Logout"} variant={"secondary"} onClick={onLogoutHandler} />
             </div>
             <img src={mainChito} alt={"chito"} />
             <div className={"buttons1"}>
