@@ -9,7 +9,7 @@ export function auth(token) {
     const headers = {
         'Authorization': `Bearer ${token}`
     }
-    const request = axios.post('/api/authenticate', null, {
+    const request = axios.get('/api/user', {
         headers: headers
     })
         .then(response => response.data)
