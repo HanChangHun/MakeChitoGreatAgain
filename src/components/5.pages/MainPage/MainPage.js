@@ -4,7 +4,9 @@ import {Button} from "../../1.atoms/Button/Button";
 import mainChito from "../../0.particle/Char/MainChar.png";
 import {Text} from "../../1.atoms/Text/Text";
 import {withRouter} from "react-router-dom";
-
+import StudyModalBtn from "../../2.molecules/StudyModalBtn/StudyModalBtn";
+import WorkoutModalBtn from "../../2.molecules/WorkoutModalBtn/WorkoutModalBtn";
+import InterviewModalBtn from "../../2.molecules/InterviewModalBtn/InterviewModalBtn";
 
 
 function MainPage(props) {
@@ -26,9 +28,9 @@ function MainPage(props) {
             </div>
             <img src={mainChito} alt={"chito"} />
             <div className={"buttons1"}>
-                <Button className={"study-btn"} label={"Study"} variant={"secondary"}/>
-                <Button className={"workout-btn"} label={"Workout"} variant={"secondary"}/>
-                <Button className={"interview-btn"} label={"Prepare Interview"} variant={"secondary"}/>
+                <StudyModalBtn />
+                <WorkoutModalBtn />
+                <InterviewModalBtn />
             </div>
             <div className={"buttons2"}>
                 <Button className={"start-btn"} label={"Midterm Exam"} variant={"secondary"}/>

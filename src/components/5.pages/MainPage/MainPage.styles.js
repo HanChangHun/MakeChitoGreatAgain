@@ -33,13 +33,15 @@ const StyledMainPage = styled.div`
     display: flex;
     justify-content: center;
 
-    button {
-      padding: 0;
-      height: 140px;
-      width: 320px;
+    div {
+      button {
+        padding: 0;
+        height: 140px;
+        width: 320px;
+      }
     }
 
-    button + button {
+    div + div {
       margin-left: 65px;
     }
   }
