@@ -1,20 +1,21 @@
 import styled from "styled-components";
 import MainPageBg from "../../0.particle/BgImages/MainPageBg.png"
 
-const StyledMainPage = styled.div`
+const StyledMainPage = styled.div.attrs({className: 'page-container page'})`
   backgroundSize: cover;
   overflow: hidden;
   display: -ms-flex;
   display: -webkit-flex;
   display: flex;
   background: url(${MainPageBg}) no-repeat center fixed;
+  background-size: 100% 100%;
   height: 100vh;
 
   .logout {
     margin-left: auto;
     margin-right: 20px;
   }
-  
+
   .main-block {
     flex: 1;
     backdrop-filter: blur(5px);
@@ -50,12 +51,14 @@ const StyledMainPage = styled.div`
     display: flex;
     justify-content: center;
 
-    button {
-      height: 140px;
-      width: 525px;
+    a {
+      button {
+        height: 140px;
+        width: 525px;
+      }
     }
 
-    button + button {
+    a + a {
       margin-left: 42px;
     }
   }

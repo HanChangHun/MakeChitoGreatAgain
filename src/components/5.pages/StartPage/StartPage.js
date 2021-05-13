@@ -6,7 +6,7 @@ import LoginForm from "../../2.molecules/LoginForm/LoginForm";
 import {withRouter} from "react-router-dom";
 
 
-function StartPage(){
+function StartPage() {
     const [Login, setLogin] = useState(false)
 
     const loginButtonClicked = () => {

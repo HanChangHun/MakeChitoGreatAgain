@@ -8,7 +8,8 @@ const StyledStartPage = styled.div`
   overflow: hidden;
   display: flex;
   height: 100vh;
-
+  background-size: 100% 100%;
+  
   .main-block {
     flex: 1;
     backdrop-filter: blur(5px);

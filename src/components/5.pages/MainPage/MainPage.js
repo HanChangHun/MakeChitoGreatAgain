@@ -3,7 +3,7 @@ import StyledStartPage from "./MainPage.styles";
 import {Button} from "../../1.atoms/Button/Button";
 import mainChito from "../../0.particle/Char/MainChar.png";
 import {Text} from "../../1.atoms/Text/Text";
-import {withRouter} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import StudyModalBtn from "../../2.molecules/StudyModalBtn/StudyModalBtn";
 import WorkoutModalBtn from "../../2.molecules/WorkoutModalBtn/WorkoutModalBtn";
 import InterviewModalBtn from "../../2.molecules/InterviewModalBtn/InterviewModalBtn";
@@ -11,7 +11,7 @@ import InterviewModalBtn from "../../2.molecules/InterviewModalBtn/InterviewModa
 
 function MainPage(props) {
     let semester = "1-1";
-    let timePoint = 10;
+    let week = 1;
     let grade = 0.0;
     let int = 10;
     let health = 10;
@@ -21,24 +21,29 @@ function MainPage(props) {
         props.history.push("/");
     }
 
+
     return (<StyledStartPage>
         <div className={"main-block"}>
             <div className="logout">
-                <Button label={"Logout"} variant={"secondary"} onClick={onLogoutHandler} />
+                <Button label={"Logout"} variant={"secondary"} onClick={onLogoutHandler}/>
             </div>
-            <img src={mainChito} alt={"chito"} />
+            <img src={mainChito} alt={"chito"}/>
             <div className={"buttons1"}>
-                <StudyModalBtn />
-                <WorkoutModalBtn />
-                <InterviewModalBtn />
+                <StudyModalBtn/>
+                <WorkoutModalBtn/>
+                <InterviewModalBtn/>
             </div>
             <div className={"buttons2"}>
-                <Button className={"start-btn"} label={"Midterm Exam"} variant={"secondary"}/>
-                <Button className={"board-btn"} label={"Final Exam"} variant={"secondary"}/>
+                <Link to={'/midterm'}>
+                    <Button className={"start-btn"} label={"Midterm Exam"} variant={"secondary"}/>
+                </Link>
+                <Link to={'/final'}>
+                    <Button className={"board-btn"} label={"Final Exam"} variant={"secondary"}/>
+                </Link>
             </div>
             <div className={"status"}>
                 <Text text={"Semester - " + semester} size={"48px"} weight={700} color={"white"}/>
-                <Text text={"Time Point: " + timePoint} size={"48px"} weight={700} color={"white"}/>
+                <Text text={"Time Point: " + week} size={"48px"} weight={700} color={"white"}/>
                 <Text text={"Grade: " + grade} size={"48px"} weight={700} color={"white"}/>
                 <Text text={"Intelligence: " + int} size={"48px"} weight={700} color={"white"}/>
                 <Text text={"Health: " + health} size={"48px"} weight={700} color={"white"}/>
