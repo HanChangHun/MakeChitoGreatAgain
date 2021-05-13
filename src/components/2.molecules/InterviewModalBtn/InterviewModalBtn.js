@@ -21,10 +21,19 @@ const modalStyles = {
 };
 
 
-function InterviewModalBtn(props) {
+function InterviewModalBtn({params, ...props}) {
     const [modalIsOpen, setIsOpen] = useState(false);
 
     function openModal() {
+        params.setWeek(params.Week + 1);
+
+        if (params.Week === 7)
+            params.setActiveBtn(1)
+        else if (params.Week === 15)
+            params.setActiveBtn(2)
+        else
+            params.setActiveBtn(0)
+
         setIsOpen(true);
     }
 
@@ -32,6 +41,9 @@ function InterviewModalBtn(props) {
     // }
 
     function closeModal() {
+        params.setInt(params.Int - 1);
+        params.setHealth(params.Health - 1);
+        params.setSpeech(params.Speech + 3);
         setIsOpen(false);
     }
 

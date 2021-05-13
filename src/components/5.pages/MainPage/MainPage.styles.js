@@ -45,6 +45,14 @@ const StyledMainPage = styled.div.attrs({className: 'page-container page'})`
     div + div {
       margin-left: 65px;
     }
+
+  }
+
+  .buttons1.disabled {
+    button {
+      filter: brightness(50%);
+      cursor: not-allowed;
+    }
   }
 
   .buttons2 {
@@ -71,6 +79,10 @@ const StyledMainPage = styled.div.attrs({className: 'page-container page'})`
     padding: 10px;
   }
 
+  button.disabled {
+    filter: brightness(50%);
+    cursor: not-allowed;
+  }
 `;
 
 export default StyledMainPage;

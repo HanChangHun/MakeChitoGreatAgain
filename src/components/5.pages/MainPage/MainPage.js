@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import StyledStartPage from "./MainPage.styles";
 import {Button} from "../../1.atoms/Button/Button";
 import mainChito from "../../0.particle/Char/MainChar.png";
@@ -10,12 +10,26 @@ import InterviewModalBtn from "../../2.molecules/InterviewModalBtn/InterviewModa
 
 
 function MainPage(props) {
-    let semester = "1-1";
-    let week = 1;
-    let grade = 0.0;
-    let int = 10;
-    let health = 10;
-    let speech = 10;
+    const [Year, setYear] = useState(1);
+    const [Semester, setSemester] = useState(1);
+    const [Week, setWeek] = useState(1);
+    const [Grade, setGrade] = useState(null);
+    const [Int, setInt] = useState(10);
+    const [Health, setHealth] = useState(10);
+    const [Speech, setSpeech] = useState(10);
+    const [ActiveBtn, setActiveBtn] = useState(0);
+
+    let passParams = {
+        Year: Year, setYear: setYear,
+        Semester: Semester, setSemester: setSemester,
+        Week: Week, setWeek: setWeek,
+        Grade: Grade, setGrade: setGrade,
+        Int: Int, setInt: setInt,
+        Health: Health, setHealth: setHealth,
+        Speech: Speech, setSpeech: setSpeech,
+        ActiveBtn: ActiveBtn, setActiveBtn: setActiveBtn
+    }
+
 
     function onLogoutHandler() {
         props.history.push("/");
@@ -28,26 +42,28 @@ function MainPage(props) {
                 <Button label={"Logout"} variant={"secondary"} onClick={onLogoutHandler}/>
             </div>
             <img src={mainChito} alt={"chito"}/>
-            <div className={"buttons1"}>
-                <StudyModalBtn/>
-                <WorkoutModalBtn/>
-                <InterviewModalBtn/>
+            <div className={(ActiveBtn === 0) ? "buttons1" : "buttons1 disabled"}>
+                <StudyModalBtn params={passParams}/>
+                <WorkoutModalBtn params={passParams}/>
+                <InterviewModalBtn params={passParams}/>
             </div>
             <div className={"buttons2"}>
-                <Link to={'/midterm'}>
-                    <Button className={"start-btn"} label={"Midterm Exam"} variant={"secondary"}/>
+                <Link to={'/midterm'}  onClick={(ActiveBtn===0) ? (event) => event.preventDefault() : null}>
+                    <Button className={(ActiveBtn === 1) ? "midterm-btn" : "midterm-btn disabled"}
+                            label={"Midterm Exam"} variant={"secondary"}/>
                 </Link>
-                <Link to={'/final'}>
-                    <Button className={"board-btn"} label={"Final Exam"} variant={"secondary"}/>
+                <Link to={'/final'} onClick={(ActiveBtn === 0) ? (event) => event.preventDefault() : null}>
+                    <Button className={(ActiveBtn === 2) ? "final-btn" : "final-btn disabled"} label={"Final Exam"}
+                            variant={"secondary"}/>
                 </Link>
             </div>
             <div className={"status"}>
-                <Text text={"Semester - " + semester} size={"48px"} weight={700} color={"white"}/>
-                <Text text={"Time Point: " + week} size={"48px"} weight={700} color={"white"}/>
-                <Text text={"Grade: " + grade} size={"48px"} weight={700} color={"white"}/>
-                <Text text={"Intelligence: " + int} size={"48px"} weight={700} color={"white"}/>
-                <Text text={"Health: " + health} size={"48px"} weight={700} color={"white"}/>
-                <Text text={"Speech: " + speech} size={"48px"} weight={700} color={"white"}/>
+                <Text text={"Semester " + Year + " - " + Semester} size={"48px"} weight={700} color={"white"}/>
+                <Text text={"Week: " + Week} size={"36px"} weight={700} color={"white"}/>
+                <Text text={"Grade: " + Grade} size={"48px"} weight={700} color={"white"}/>
+                <Text text={"Intelligence: " + Int} size={"48px"} weight={700} color={"white"}/>
+                <Text text={"Health: " + Health} size={"48px"} weight={700} color={"white"}/>
+                <Text text={"Speech: " + Speech} size={"48px"} weight={700} color={"white"}/>
             </div>
         </div>
     </StyledStartPage>);

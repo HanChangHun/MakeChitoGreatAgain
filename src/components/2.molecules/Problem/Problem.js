@@ -40,7 +40,7 @@ const endModalStyles = {
     }
 };
 
-export const Problem = ({x, y, health, sleepy, endHandler}) => {
+export const Problem = ({x, y, health, sleepy}) => {
 
     const [Health, setHealth] = useState(health);
     const [CurrentHealth, setCurrentHealth] = useState(health);
