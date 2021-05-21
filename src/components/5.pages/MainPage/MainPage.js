@@ -30,7 +30,6 @@ function MainPage(props) {
         ActiveBtn: ActiveBtn, setActiveBtn: setActiveBtn
     }
 
-
     function onLogoutHandler() {
         props.history.push("/");
     }
