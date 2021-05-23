@@ -9,6 +9,7 @@ const StyledAdminHeader = styled.div`
   align-items: center;
   flex-direction: row;
   justify-content: space-between;
+  padding: 10px;
 
   .greeting {
     display: flex;
