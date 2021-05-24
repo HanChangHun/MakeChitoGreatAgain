@@ -6,8 +6,10 @@ const buttonFontSize = props => {
 
     if (props.variant === "primary") {
         return "72px";
-    } else {
+    } else if (props.variant === "secondary"){
         return "56px";
+    } else if (props.variant === "admin"){
+        return "30px";
     }
 };
 
@@ -17,8 +19,10 @@ const buttonPadding = props => {
 
     if (props.variant === "primary") {
         return "32px 64px";
-    } else {
+    } else if (props.variant === "secondary") {
         return "32px 40px";
+    }else if (props.variant === "admin"){
+        return "20px";
     }
 };
 

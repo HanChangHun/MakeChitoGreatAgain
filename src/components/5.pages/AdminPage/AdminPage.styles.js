@@ -23,9 +23,6 @@ const StyledAdminPage = styled.div.attrs({className:'page-container page'})`
     display: flex;
     flex-direction: row;
     margin-top: 10px;
-    div + div {
-      margin-left: 10px;
-    }
   }
 `;
 

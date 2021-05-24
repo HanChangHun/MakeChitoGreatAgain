@@ -1,0 +1,10 @@
+{
+	"id": 1,
+	"q_body": "What Software Development Process Model is not needed reason?",
+	"s1_body": "To prevent software development from failing",
+	"s2_body": "Projects are late, under budgeted, or delivered with fewer features than planned",
+	"s3_body": "Teams who work on the software need a common method to work together",
+	"s4_body": "Creating complex software is easy.",
+	"ans":4,
+	"hint": "Creating complex software is not easy."
+}

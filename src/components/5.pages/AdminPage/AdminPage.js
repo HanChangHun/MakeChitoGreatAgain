@@ -4,23 +4,54 @@ import StyledFinalPage from "./AdminPage.styles";
 import {AdminHeader} from "../../2.molecules/AdminHeader/AdminHeader";
 import {AdminSidebar} from "../../2.molecules/AdminSidebar/AdminSidebar";
 import {AdminGroupBody} from "../../3.organisms/AdminGroupBody/AdminGroupBody";
+import {array} from "prop-types";
+import sample_group_data from './sample_groups_data.json'
+import sample_prob_data from './sample_prob_data.json'
+import {AdminProbBody} from "../../3.organisms/AdminProbBody/AdminProbBody";
 
+function AdminPage({groups, problems}) {
+    let group_flag;
+    let prob_flag;
 
-function AdminPage(props) {
+    if (groups !== null) {
+        group_flag = 1;
+        prob_flag = 0;
+    } else if (problems !== null) {
+        group_flag = 0;
+        prob_flag = 1;
+    }
 
-    return (<StyledFinalPage>
-        <div className={"main-block"}>
-            <AdminHeader/>
-            <div className={"main-body"}>
-                <AdminSidebar/>
-                <AdminGroupBody/>
+    if (group_flag) {
+        return (<StyledFinalPage>
+            <div className={"main-block"}>
+                <AdminHeader/>
+                <div className={"main-body"}>
+                    <AdminSidebar/>
+                    <AdminGroupBody groups={groups}/>
+                </div>
             </div>
-        </div>
-    </StyledFinalPage>);
+        </StyledFinalPage>);
+    } else if (prob_flag) {
+        return (<StyledFinalPage>
+            <div className={"main-block"}>
+                <AdminHeader/>
+                <div className={"main-body"}>
+                    <AdminSidebar/>
+                    <AdminProbBody problems={problems}/>
+                </div>
+            </div>
+        </StyledFinalPage>);
+    }
 }
 
-AdminPage.propTypes = {};
+AdminPage.propTypes = {
+    groups: array,
+    problems: array
+};
 
-AdminPage.defaultProps = {};
+AdminPage.defaultProps = {
+    groups: sample_group_data.groups,
+    problems: sample_prob_data.problems
+};
 
 export default withRouter(AdminPage);

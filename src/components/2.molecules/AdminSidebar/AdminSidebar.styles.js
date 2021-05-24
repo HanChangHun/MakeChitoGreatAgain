@@ -5,6 +5,7 @@ const StyledAdminSidebar = styled.div`
   height: 780px;
   background: #FFFFFF;
   border-radius: 10px;
+  margin-right: 10px;
 
   ul {
     list-style-type: none;
