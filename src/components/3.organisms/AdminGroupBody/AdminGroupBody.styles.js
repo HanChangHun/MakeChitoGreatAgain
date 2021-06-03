@@ -9,7 +9,12 @@ const StyledAdminGroupBody = styled.div`
   display: flex;
   flex-direction: column;
 
-  .problems {
+  .group-tops{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .groups-body {
     height: 570px;
     overflow: scroll;
   }

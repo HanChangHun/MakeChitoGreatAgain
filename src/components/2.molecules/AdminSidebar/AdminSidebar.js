@@ -4,8 +4,8 @@ import StyledAdminSidebar from "./AdminSidebar.styles";
 export const AdminSidebar = () => {
     return (<StyledAdminSidebar>
         <ul>
-            <li><a href="#problems">Change Problems</a></li>
-            <li><a href="#exams">Set Exams</a></li>
+            <li><a href="#problems">Edit Group</a></li>
+            <li><a href="#exams">Set Exam</a></li>
         </ul>
     </StyledAdminSidebar>);
 };

@@ -5,14 +5,19 @@ import {FinalProblemInfo} from "../../2.molecules/FinalProblemInfo/FinalProblemI
 import sample_data from './sample_prob_data.json'
 import {array} from "prop-types";
 import {Button} from "../../1.atoms/Button/Button";
+import {ProblemEdit} from "../../1.atoms/InputText/ProblemEdit/ProblemEdit";
+import {InputText} from "../../1.atoms/InputText/InputText";
+import {GroupNameEdit} from "../../1.atoms/InputText/GroupNameEdit/GroupNameEdit";
 
-
-export const AdminProbBody = ({problems}) => {
+export const AdminProbBody = ({g_name, problems}) => {
     let problem_comps = []
     for (let i = 0; i < problems.length; i++) {
         problem_comps.push(<FinalProblemInfo problem={problems[i]}/>)
     }
     const [problemList, setProblemList] = useState(problem_comps)
+    const [groupName, setGroupName] = useState(g_name)
+
+    const onGroupNameHandler = (event) => setGroupName(event.currentTarget.value)
 
     function getAllData() {
         let allData = []
@@ -52,9 +57,11 @@ export const AdminProbBody = ({problems}) => {
     }
 
     return (<StyledAdminGroupBody>
-        <Text text={"Change Problems"} weight={700} size={"36px"}/>
+        <Text text={"Edit Group"} weight={700} size={"36px"}/>
+        <Text text={"edit Group Name"} weight={700} size={"30px"}/>
+        <GroupNameEdit value={groupName} onChange={onGroupNameHandler} />
         <br/>
-        <Text text={"Set Problems"} weight={700} size={"30px"}/>
+        <Text text={"edit Problems"} weight={700} size={"30px"}/>
         <div className={"problems"}>
             {problemList}
         </div>

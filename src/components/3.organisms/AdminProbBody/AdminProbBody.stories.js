@@ -14,5 +14,5 @@ const Template = (args) => <AdminProbBody {...args} />;
 
 export const Basic = Template.bind({});
 Basic.args = {
-    groups: sample_data.problems
+    problems: sample_data.problems
 };

@@ -5,3 +5,5 @@ export const AUTH_USER = "auth_user";
 export const STUDY_ABILITY = "study_ability";
 export const WORKOUT_ABILITY = "workout_ability";
 export const SPEECH_ABILITY = "speech_ability";
+
+export const DELETE_PROBLEM = "delete_problem";

@@ -31,11 +31,15 @@ const StyledFinalProblemInfo = styled.div`
   }
 
   .option {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     width: 300px;
     margin-left: 20px;
 
     div {
       display: flex;
+      justify-content: center;
     }
   }
 `;

@@ -23,6 +23,12 @@ secondaryButton.args = {
   variant: "secondary"
 };
 
+export const adminButton = Template.bind({});
+adminButton.args = {
+  label: "Secondary Button",
+  variant: "admin"
+};
+
 export const arrowButton = Template.bind({});
 arrowButton.args = {
   label: "←",

@@ -1,6 +1,7 @@
 import React from 'react';
 import {InputText} from './InputText';
 import {ProblemEdit} from "./ProblemEdit/ProblemEdit";
+import {GroupNameEdit} from "./GroupNameEdit/GroupNameEdit";
 
 export default {
     title: '1.atoms/InputText',
@@ -29,3 +30,11 @@ export const problemEdit = ProblemEditTemplate.bind({});
 problemEdit.args = {
     placeholder:"Input Question"
 };
+
+const GroupNameEditTemplate = (args) => <GroupNameEdit {...args} />
+
+export const groupNameEdit = GroupNameEditTemplate.bind({});
+groupNameEdit.args = {
+    placeholder:"Input Group Name"
+};
+

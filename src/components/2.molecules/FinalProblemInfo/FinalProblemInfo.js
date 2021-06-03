@@ -1,11 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import StyledFinalProblemInfo from "./FinalProblemInfo.styles";
 import sample_data from './sample_prob_data.json'
-import {object} from "prop-types";
+import {func, object} from "prop-types";
 import {Text} from "../../1.atoms/Text/Text";
 import {ProblemEdit} from "../../1.atoms/InputText/ProblemEdit/ProblemEdit";
+import {Button} from "../../1.atoms/Button/Button";
 
 export const FinalProblemInfo = ({problem}) => {
+    const [deleteClicked, setDeleteClicked] = useState(0);
+
     const [qBody, setQBody] = useState(problem.q_body);
     const [s1Body, setS1Body] = useState(problem.s1_body);
     const [s2Body, setS2Body] = useState(problem.s2_body);
@@ -25,10 +28,17 @@ export const FinalProblemInfo = ({problem}) => {
     useEffect(() => {
     }, [qBody, s1Body, s2Body, s3Body, s4Body, ans, hint]);
 
-    return (<StyledFinalProblemInfo>
+    function deleteOnClick(){
+        setDeleteClicked(1);
+    }
+    if (deleteClicked === 1){
+        return (<></>);
+    }
+    return (
+        <StyledFinalProblemInfo>
         <div className="question">
             <Text text={"Q: "} size={"17px"} weight={400}/>
-            <ProblemEdit value={qBody} onChange={onQBodyHandler} size={"16px"} weight={400} placeholder={"Input Question Body"} />
+            <ProblemEdit rows={1} value={qBody} onChange={onQBodyHandler} size={"16px"} weight={400} placeholder={"Input Question Body"} />
         </div>
         <div className="bottom">
             <div className="selects">
@@ -57,6 +67,9 @@ export const FinalProblemInfo = ({problem}) => {
                 <div>
                     <Text text={"Hint: "} size={"16px"} weight={400}/>
                     <ProblemEdit value={hint} onChange={onHintHandler} size={"16px"} weight={400} placeholder={"Input Hint Body"}/>
+                </div>
+                <div>
+                    <Button label={"Delete Problem"} variant={"admin"} onClick={deleteOnClick} />
                 </div>
             </div>
         </div>

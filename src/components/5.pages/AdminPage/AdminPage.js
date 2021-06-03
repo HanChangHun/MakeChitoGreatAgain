@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {withRouter} from "react-router-dom";
 import StyledFinalPage from "./AdminPage.styles";
 import {AdminHeader} from "../../2.molecules/AdminHeader/AdminHeader";
@@ -10,6 +10,8 @@ import sample_prob_data from './sample_prob_data.json'
 import {AdminProbBody} from "../../3.organisms/AdminProbBody/AdminProbBody";
 
 function AdminPage({groups, problems}) {
+    const [gName,setGName] = useState("Software Development Life Cycle (SDLC)")
+
     let group_flag;
     let prob_flag;
 
@@ -37,7 +39,7 @@ function AdminPage({groups, problems}) {
                 <AdminHeader/>
                 <div className={"main-body"}>
                     <AdminSidebar/>
-                    <AdminProbBody problems={problems}/>
+                    <AdminProbBody g_name={gName} problems={problems}/>
                 </div>
             </div>
         </StyledFinalPage>);
