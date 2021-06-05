@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 const StyledGroupNameEdit = styled.input`
-  width: 700px;
   border: 0;
   font-family: S-Core, serif;
   border-bottom: solid 1px lightgray;

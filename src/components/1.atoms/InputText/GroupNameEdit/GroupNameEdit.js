@@ -2,12 +2,16 @@ import React from 'react';
 import {string} from 'prop-types';
 import StyledGroupNameEdit from "./GroupNameEdit.styles";
 
-export const GroupNameEdit = ({placeholder, value, onChange, weight, size, rows, ...props}) => {
-    return (<StyledGroupNameEdit style={{fontWeight: weight, fontSize: size}}
-                               placeholder={placeholder}
-                               value={value}
-                               rows={rows}
-                               onChange={onChange}/>);
+export const GroupNameEdit = ({placeholder, value, onChange, weight, size, rows, width, ...props}) => {
+    return (<StyledGroupNameEdit style={{
+        fontWeight: weight,
+        fontSize: size,
+        width: width
+    }}
+                                 placeholder={placeholder}
+                                 value={value}
+                                 rows={rows}
+                                 onChange={onChange}/>);
 };
 
 GroupNameEdit.propTypes = {
@@ -15,7 +19,8 @@ GroupNameEdit.propTypes = {
 };
 
 GroupNameEdit.defaultProps = {
-    placeholder: "Input Question",
+    placeholder: "Input Group Name",
     weight: 600,
+    width: "700px",
     size: "30px"
 };
