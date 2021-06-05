@@ -11,6 +11,15 @@ const StyledAdminSidebar = styled.div`
     list-style-type: none;
     margin: 10px;
     padding: 10px;
+
+    li {
+      p {
+        :hover {
+          color: dimgray;
+          cursor: pointer;
+        }
+      }
+    }
   }
 
   a {

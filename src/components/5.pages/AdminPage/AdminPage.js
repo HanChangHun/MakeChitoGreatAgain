@@ -6,18 +6,19 @@ import {AdminSidebar} from "../../2.molecules/AdminSidebar/AdminSidebar";
 import {AdminGroupBody} from "../../3.organisms/AdminGroupBody/AdminGroupBody";
 import {AdminProbBody} from "../../3.organisms/AdminProbBody/AdminProbBody";
 import {AdminExamBody} from "../../3.organisms/AdminExamBody/AdminExamBody";
-import {array} from "prop-types";
+import {array, number} from "prop-types";
 import sample_group_data from './sample_groups_data.json'
 import sample_prob_data from './sample_prob_data.json'
 import sample_exam_data from './sample_exam_info.json'
+import {useDispatch} from "react-redux";
+import {getFlag} from "../../../_actions/admin_action";
 
 function AdminPage({flag, groups, problems, exam_info}) {
-    const [gName, setGName] = useState("Software Development Life Cycle (SDLC)")
-    const [viewFlag, setViewFlag] = useState(flag);
-    console.log(flag)
-    console.log(viewFlag)
+    const dispatch = useDispatch();
 
-    if (viewFlag === 0) {
+    const [gName, setGName] = useState("Software Development Life Cycle (SDLC)")
+
+    if (getFlag().payload === 0) {
         return (<StyledFinalPage>
             <div className={"main-block"}>
                 <AdminHeader/>
@@ -27,7 +28,7 @@ function AdminPage({flag, groups, problems, exam_info}) {
                 </div>
             </div>
         </StyledFinalPage>);
-    } else if (viewFlag === 1) {
+    } else if (getFlag().payload === 1) {
         return (<StyledFinalPage>
             <div className={"main-block"}>
                 <AdminHeader/>
@@ -37,7 +38,7 @@ function AdminPage({flag, groups, problems, exam_info}) {
                 </div>
             </div>
         </StyledFinalPage>);
-    } else if (viewFlag === 2) {
+    } else if (getFlag().payload === 2) {
         return (<StyledFinalPage>
             <div className={"main-block"}>
                 <AdminHeader/>
@@ -51,12 +52,14 @@ function AdminPage({flag, groups, problems, exam_info}) {
 }
 
 AdminPage.propTypes = {
+    flag: number,
     groups: array,
     problems: array,
     exam_info: array
 };
 
 AdminPage.defaultProps = {
+    flag: 0,
     groups: sample_group_data.groups,
     problems: sample_prob_data.problems,
     exam_info: sample_exam_data

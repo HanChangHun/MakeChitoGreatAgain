@@ -3,12 +3,10 @@ import {number, string} from 'prop-types';
 import StyledText, {StyledLinkedText} from "./Text.styles";
 
 
-export const Text = ({text, weight, size, color}) => {
-    return (<StyledText style={{
-        fontWeight: weight,
-        fontSize: size,
-        color: color
-    }}>{text}</StyledText>);
+export const Text = ({text, weight, size, color, ...props}) => {
+    return (<StyledText style={{fontWeight: weight, fontSize: size, color: color}} {...props}>
+        {text}
+    </StyledText>);
 };
 
 Text.propTypes = {
@@ -44,8 +42,7 @@ MultiLineText.defaultProps = {
 };
 
 export const LinkedText = ({text, href}) => {
-    return (<StyledLinkedText href={href} style={{
-    }}>{text}</StyledLinkedText>);
+    return (<StyledLinkedText href={href} style={{}}>{text}</StyledLinkedText>);
 };
 
 LinkedText.propTypes = {
