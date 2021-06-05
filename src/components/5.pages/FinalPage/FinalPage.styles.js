@@ -15,14 +15,15 @@ const StyledFinalPage = styled.div.attrs({className:'page-container page'})`
     flex: 1;
     display: flex;
     backdrop-filter: blur(5px);
-    justify-content: space-around;
-    flex-direction: column;
-
+    justify-content: center;
+    align-items: center;
+    
     img {
       display: block;
       margin-left: auto;
       margin-right: auto;
     }
+    
   }
 `;
 

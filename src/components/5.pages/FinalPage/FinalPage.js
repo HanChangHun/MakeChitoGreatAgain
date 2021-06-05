@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link, withRouter} from "react-router-dom";
 import StyledFinalPage from "./FinalPage.styles";
-import {Button} from "../../1.atoms/Button/Button";
+import {FinalExamBody} from "../../3.organisms/FinalExamBody/FinalExamBody";
 
 
 function FinalPage(props) {
@@ -12,9 +12,7 @@ function FinalPage(props) {
 
     return (<StyledFinalPage>
         <div className="main-block">
-            <Link to='/main'>
-                <Button onClick={onBackHandler} label={"Back!"}/>
-            </Link>
+            <FinalExamBody/>
         </div>
     </StyledFinalPage>);
 }
