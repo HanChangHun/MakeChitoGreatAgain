@@ -1,5 +1,5 @@
 import React from 'react';
-import {AdminSidebar} from './AdminSidebar';
+import AdminSidebar from './AdminSidebar';
 
 export default {
     title: '2.molecules/AdminSidebar',

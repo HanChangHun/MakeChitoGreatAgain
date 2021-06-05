@@ -3,8 +3,9 @@ import StyledAdminSidebar from "./AdminSidebar.styles";
 import {useDispatch} from "react-redux";
 import {Text} from "../../1.atoms/Text/Text";
 import {toExamSelect, toGroupSelect} from "../../../_actions/admin_action";
+import {withRouter} from "react-router-dom";
 
-export const AdminSidebar = (props) => {
+function AdminSidebar(props) {
     const dispatch = useDispatch();
 
     const onEditClicked = (event) => {
@@ -30,3 +31,5 @@ export const AdminSidebar = (props) => {
 AdminSidebar.propTypes = {};
 
 AdminSidebar.defaultProps = {};
+
+export default withRouter(AdminSidebar);

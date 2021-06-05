@@ -1,16 +1,16 @@
 import React, {useState} from 'react';
-import StyledAdminGroupBody from "./AdminProbBody.styles";
+import StyledAdminProbBody from "./AdminProbBody.styles";
 import {Text} from "../../1.atoms/Text/Text";
-import {FinalProblemInfo} from "../../2.molecules/FinalProblemInfo/FinalProblemInfo";
-import sample_data from './sample_prob_data.json'
-import {array} from "prop-types";
 import {Button} from "../../1.atoms/Button/Button";
 import {GroupNameEdit} from "../../1.atoms/InputText/GroupNameEdit/GroupNameEdit";
+import {FinalProblemInfo} from "../../2.molecules/FinalProblemInfo/FinalProblemInfo";
+import {array} from "prop-types";
+import sample_data from './sample_prob_data.json'
 
 export const AdminProbBody = ({g_name, problems}) => {
     let problem_comps = []
     for (let i = 0; i < problems.length; i++) {
-        problem_comps.push(<FinalProblemInfo problem={problems[i]}/>)
+        problem_comps.push(<FinalProblemInfo variance={"admin"} problem={problems[i]}/>)
     }
     const [problemList, setProblemList] = useState(problem_comps)
     const [groupName, setGroupName] = useState(g_name)
@@ -59,7 +59,7 @@ export const AdminProbBody = ({g_name, problems}) => {
         setProblemList(copy);
     }
 
-    return (<StyledAdminGroupBody>
+    return (<StyledAdminProbBody>
         <Text text={"Edit Group"} weight={700} size={"36px"}/>
         <br/>
         <Text text={"edit Group Name"} weight={700} size={"30px"}/>
@@ -75,7 +75,7 @@ export const AdminProbBody = ({g_name, problems}) => {
             <Button label={"Add Problem"} variant={"secondary"} onClick={addProblem}/>
             <Button label={"Save Changes"} variant={"secondary"} onClick={getAllData}/>
         </div>
-    </StyledAdminGroupBody>);
+    </StyledAdminProbBody>);
 };
 
 AdminProbBody.propTypes = {

@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
 import StyledAdminGroupBody from "./AdminGroupBody.styles";
 import {Text} from "../../1.atoms/Text/Text";
-import {ProblemGroup} from "../../2.molecules/ProblemGroup/ProblemGroup";
 import {Button} from "../../1.atoms/Button/Button";
+import ProblemGroup from "../../2.molecules/ProblemGroup/ProblemGroup";
+import {withRouter} from "react-router-dom";
 
-export const AdminGroupBody = ({groups}) => {
+function AdminGroupBody({groups, props}) {
     let elements = [];
     for (let i = 0; i < groups.length; i++) {
         elements.push(<ProblemGroup gid={groups[i].gid} g_name={groups[i].g_name} num_prob={groups[i].num_problems}/>);
@@ -36,3 +37,5 @@ export const AdminGroupBody = ({groups}) => {
 AdminGroupBody.propTypes = {};
 
 AdminGroupBody.defaultProps = {};
+
+export default withRouter(AdminGroupBody);

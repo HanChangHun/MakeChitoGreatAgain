@@ -1,7 +1,8 @@
-import axios from 'axios';
 import {
     GET_FLAG,
-    NAVIGATE_TO_GROUP
+    NAVIGATE_TO_GROUP,
+    NAVIGATE_TO_PROBLEMS,
+    NAVIGATE_TO_EXAMS,
 } from './types';
 
 const adminState = {
@@ -18,9 +19,17 @@ export function getFlag() {
 }
 
 export function toGroupSelect() {
-    adminState.flag=1;
+    adminState.flag=0;
     return {
         type: NAVIGATE_TO_GROUP,
+        payload: adminState
+    }
+}
+
+export function toEditProblem() {
+    adminState.flag=1;
+    return {
+        type: NAVIGATE_TO_PROBLEMS,
         payload: adminState
     }
 }
@@ -28,7 +37,7 @@ export function toGroupSelect() {
 export function toExamSelect() {
     adminState.flag=2;
     return {
-        type: NAVIGATE_TO_GROUP,
+        type: NAVIGATE_TO_EXAMS,
         payload: adminState
     }
 }

@@ -12,7 +12,14 @@ export default {
 
 const Template = (args) => <FinalProblemInfo {...args} />;
 
-export const basic = Template.bind({});
-basic.args = {
-    problem: sample_data
+export const admin = Template.bind({});
+admin.args = {
+    problem: sample_data,
+    variance: "admin"
+};
+
+export const exam = Template.bind({});
+exam.args = {
+    problem: sample_data,
+    variance: "exam"
 };

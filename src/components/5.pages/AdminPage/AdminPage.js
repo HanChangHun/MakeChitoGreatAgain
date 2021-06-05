@@ -2,18 +2,18 @@ import React, {useState} from 'react';
 import {withRouter} from "react-router-dom";
 import StyledFinalPage from "./AdminPage.styles";
 import {AdminHeader} from "../../2.molecules/AdminHeader/AdminHeader";
-import {AdminSidebar} from "../../2.molecules/AdminSidebar/AdminSidebar";
-import {AdminGroupBody} from "../../3.organisms/AdminGroupBody/AdminGroupBody";
+import AdminSidebar from "../../2.molecules/AdminSidebar/AdminSidebar";
+import AdminGroupBody from "../../3.organisms/AdminGroupBody/AdminGroupBody";
 import {AdminProbBody} from "../../3.organisms/AdminProbBody/AdminProbBody";
 import {AdminExamBody} from "../../3.organisms/AdminExamBody/AdminExamBody";
 import {array, number} from "prop-types";
+import {useDispatch} from "react-redux";
+import {getFlag} from "../../../_actions/admin_action";
 import sample_group_data from './sample_groups_data.json'
 import sample_prob_data from './sample_prob_data.json'
 import sample_exam_data from './sample_exam_info.json'
-import {useDispatch} from "react-redux";
-import {getFlag} from "../../../_actions/admin_action";
 
-function AdminPage({flag, groups, problems, exam_info}) {
+function AdminPage({groups, problems, exam_info}) {
     const dispatch = useDispatch();
 
     const [gName, setGName] = useState("Software Development Life Cycle (SDLC)")

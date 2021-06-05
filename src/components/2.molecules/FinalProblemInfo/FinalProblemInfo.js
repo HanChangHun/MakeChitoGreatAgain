@@ -6,8 +6,9 @@ import {Text} from "../../1.atoms/Text/Text";
 import {ProblemEdit} from "../../1.atoms/InputText/ProblemEdit/ProblemEdit";
 import {Button} from "../../1.atoms/Button/Button";
 
-export const FinalProblemInfo = ({problem}) => {
+export const FinalProblemInfo = ({problem, variance}) => {
     const [deleteClicked, setDeleteClicked] = useState(0);
+    const [hintFlag, setHintFlag] = useState(0);
 
     const [qBody, setQBody] = useState(problem.q_body);
     const [s1Body, setS1Body] = useState(problem.s1_body);
@@ -16,6 +17,7 @@ export const FinalProblemInfo = ({problem}) => {
     const [s4Body, setS4Body] = useState(problem.s4_body);
     const [ans, setAns] = useState(problem.ans);
     const [hint, setHint] = useState(problem.hint);
+    const [hint2, setHint2] = useState("");
 
     const onQBodyHandler = (event) => setQBody(event.currentTarget.value)
     const onS1BodyHandler = (event) => setS1Body(event.currentTarget.value)
@@ -28,52 +30,103 @@ export const FinalProblemInfo = ({problem}) => {
     useEffect(() => {
     }, [qBody, s1Body, s2Body, s3Body, s4Body, ans, hint]);
 
-    function deleteOnClick(){
+    let questionBody;
+    if (variance === "admin") {
+        questionBody = (<div className="question">
+            <Text text={"Q: "} size={"18px"} weight={400}/>
+            <ProblemEdit rows={1} value={qBody} onChange={onQBodyHandler} size={"16px"} weight={400}
+                         placeholder={"Input Question Body"}/>
+        </div>)
+    } else if (variance === "exam") {
+        questionBody = (<div className="question">
+            <Text text={"Q: " + qBody} size={"18px"} weight={400}/>
+        </div>)
+    }
+
+    let selectBody = [];
+    let sBodies = [s1Body, s2Body, s3Body, s4Body]
+    let sHandlers = [onS1BodyHandler, onS2BodyHandler, onS3BodyHandler, onS4BodyHandler]
+    let sIndexTexts = ["1. ", "2. ", "3. ", "4. "]
+    if (variance === "admin") {
+        for (let i = 0; i < sBodies.length; i++) {
+            selectBody.push(<div>
+                <Text text={sIndexTexts[i]} size={"16px"} weight={400}/>
+                <ProblemEdit value={sBodies[i]} onChange={sHandlers[i]} placeholder={"Input Select1 Body"}
+                             size={"16px"} weight={400}/>
+            </div>)
+        }
+    } else if (variance === "exam") {
+        for (let i = 0; i < sBodies.length; i++) {
+            selectBody.push(<div>
+                <Text text={sIndexTexts[i] + sBodies[i]} size={"16px"} weight={400}/>
+            </div>)
+        }
+    }
+
+    let ansBody;
+    if (variance === "admin") {
+        ansBody = (<div>
+            <Text text={"Answer: "} size={"16px"} weight={400}/>
+            <ProblemEdit rows={1} value={ans} onChange={onAnsHandler} size={"16px"} weight={400}/>
+        </div>)
+    } else if (variance === "exam") {
+        ansBody = (<div>
+            <Text text={"Answer: "} size={"16px"} weight={400}/>
+            <ProblemEdit rows={1} onChange={onAnsHandler} size={"16px"} weight={400}
+                         placeholder={"Input Answer Number"}/>
+        </div>)
+    }
+
+    let hintBody;
+    if (variance === "admin") {
+        hintBody = (<div>
+            <Text text={"Hint: "} size={"16px"} weight={400}/>
+            <ProblemEdit value={hint} onChange={onHintHandler} size={"16px"} weight={400}/>
+        </div>)
+    } else if (variance === "exam") {
+        hintBody = (<div>
+            <Text text={"Hint: " + hint2} size={"16px"} weight={400}/>
+        </div>)
+    }
+
+    let functionBtn;
+    if (variance === "admin") {
+        functionBtn = (<div>
+            <Button label={"Delete Problem"} variant={"admin"} onClick={deleteOnClick}/>
+        </div>)
+    } else if (variance === "exam") {
+        functionBtn = (<div>
+            <Button label={"View Hint"} variant={"admin"} onClick={hintOnClick}/>
+        </div>)
+    }
+
+    function deleteOnClick() {
         setDeleteClicked(1);
     }
-    if (deleteClicked === 1){
+
+    function hintOnClick() {
+        setHintFlag(1);
+        setHint2(hint);
+    }
+
+    if (deleteClicked === 1) {
         return (<></>);
     }
+
     return (
         <StyledFinalProblemInfo>
-        <div className="question">
-            <Text text={"Q: "} size={"17px"} weight={400}/>
-            <ProblemEdit rows={1} value={qBody} onChange={onQBodyHandler} size={"16px"} weight={400} placeholder={"Input Question Body"} />
-        </div>
-        <div className="bottom">
-            <div className="selects">
-                <div>
-                    <Text text={"1. "} size={"16px"} weight={400}/>
-                    <ProblemEdit value={s1Body} onChange={onS1BodyHandler} placeholder={"Input Select1 Body"} size={"16px"} weight={400}/>
+            {questionBody}
+            <div className="bottom">
+                <div className="selects">
+                    {selectBody}
                 </div>
-                <div>
-                    <Text text={"2. "} size={"16px"} weight={400}/>
-                    <ProblemEdit value={s2Body} onChange={onS2BodyHandler} placeholder={"Input Select2 Body"} size={"16px"} weight={400}/>
-                </div>
-                <div>
-                    <Text text={"3. "} size={"16px"} weight={400}/>
-                    <ProblemEdit value={s3Body} onChange={onS3BodyHandler} placeholder={"Input Select3 Body"} size={"16px"} weight={400}/>
-                </div>
-                <div>
-                    <Text text={"4. "} size={"16px"} weight={400}/>
-                    <ProblemEdit value={s4Body} onChange={onS4BodyHandler} placeholder={"Input Select4 Body"} size={"16px"} weight={400}/>
+                <div className="option">
+                    {ansBody}
+                    {hintBody}
+                    {functionBtn}
                 </div>
             </div>
-            <div className="option">
-                <div>
-                    <Text text={"Answer: "} size={"16px"} weight={400}/>
-                    <ProblemEdit rows={1} value={ans} onChange={onAnsHandler} size={"16px"} placeholder={"Input Answer Number"} weight={400}/>
-                </div>
-                <div>
-                    <Text text={"Hint: "} size={"16px"} weight={400}/>
-                    <ProblemEdit value={hint} onChange={onHintHandler} size={"16px"} weight={400} placeholder={"Input Hint Body"}/>
-                </div>
-                <div>
-                    <Button label={"Delete Problem"} variant={"admin"} onClick={deleteOnClick} />
-                </div>
-            </div>
-        </div>
-    </StyledFinalProblemInfo>);
+        </StyledFinalProblemInfo>);
 };
 
 FinalProblemInfo.propTypes = {
