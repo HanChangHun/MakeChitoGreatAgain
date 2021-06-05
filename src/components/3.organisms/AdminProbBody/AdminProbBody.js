@@ -5,8 +5,6 @@ import {FinalProblemInfo} from "../../2.molecules/FinalProblemInfo/FinalProblemI
 import sample_data from './sample_prob_data.json'
 import {array} from "prop-types";
 import {Button} from "../../1.atoms/Button/Button";
-import {ProblemEdit} from "../../1.atoms/InputText/ProblemEdit/ProblemEdit";
-import {InputText} from "../../1.atoms/InputText/InputText";
 import {GroupNameEdit} from "../../1.atoms/InputText/GroupNameEdit/GroupNameEdit";
 
 export const AdminProbBody = ({g_name, problems}) => {
@@ -20,7 +18,9 @@ export const AdminProbBody = ({g_name, problems}) => {
     const onGroupNameHandler = (event) => setGroupName(event.currentTarget.value)
 
     function getAllData() {
-        let allData = []
+        let groupName = document.querySelector('.group-name').querySelector('input').value;
+        let problemList = []
+
         let problems = document.querySelector('.problems')
         for (let i = 0; i < problems.querySelectorAll('.question').length; i++) {
             let q_body = problems.querySelectorAll('.question')[i]
@@ -29,7 +29,7 @@ export const AdminProbBody = ({g_name, problems}) => {
                 .querySelectorAll('textarea')
             let [ans, hint] = problems.querySelectorAll('.option')[i]
                 .querySelectorAll('textarea')
-            allData.push({
+            problemList.push({
                 q_body: q_body.innerHTML,
                 s1_body: s1_body.innerHTML,
                 s2_body: s2_body.innerHTML,
@@ -39,7 +39,10 @@ export const AdminProbBody = ({g_name, problems}) => {
                 hint: hint.innerHTML,
             })
         }
-        console.log(allData)
+        console.log({
+            "g_name": groupName,
+            "problems": problemList
+        })
     }
 
     const addProblem = () => {
@@ -58,8 +61,11 @@ export const AdminProbBody = ({g_name, problems}) => {
 
     return (<StyledAdminGroupBody>
         <Text text={"Edit Group"} weight={700} size={"36px"}/>
+        <br/>
         <Text text={"edit Group Name"} weight={700} size={"30px"}/>
-        <GroupNameEdit value={groupName} onChange={onGroupNameHandler} />
+        <div className={"group-name"}>
+            <GroupNameEdit value={groupName} onChange={onGroupNameHandler}/>
+        </div>
         <br/>
         <Text text={"edit Problems"} weight={700} size={"30px"}/>
         <div className={"problems"}>
@@ -73,6 +79,7 @@ export const AdminProbBody = ({g_name, problems}) => {
 };
 
 AdminProbBody.propTypes = {
+    g_name: String,
     problems: array
 };
 

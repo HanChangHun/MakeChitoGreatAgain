@@ -11,12 +11,21 @@ export const AdminGroupBody = ({groups}) => {
     }
     const [groupList, setGroupList] = useState(elements)
 
+    function addGroup() {
+        let copy = [...groupList];
+        copy = [...copy, <ProblemGroup problem={{
+            g_name: "new exam",
+            num_prob: 0
+        }}/>];
+        setGroupList(copy);
+    }
+
     return (<StyledAdminGroupBody>
         <Text text={"Edit Group"} weight={700} size={"36px"}/>
         <br/>
         <div className={"group-tops"}>
             <Text text={"Select Group"} weight={700} size={"30px"}/>
-            <Button variant={"admin"} label={"Add Group"}/>
+            <Button variant={"admin"} label={"Add Group"} onClick={addGroup}/>
         </div>
         <div className={"groups-body"}>
             {groupList}
