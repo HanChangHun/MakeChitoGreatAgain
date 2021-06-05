@@ -5,10 +5,12 @@ import {Button} from "../../1.atoms/Button/Button";
 
 export const ProblemGroup = ({g_name, num_prob}) => {
     const [deleteClicked, setDeleteClicked] = useState(0);
+
     function deleteGroup() {
         setDeleteClicked(1);
     }
-    if (deleteClicked === 1){
+
+    if (deleteClicked === 1) {
         return (<></>);
     }
     return (<StyledProblemGroup>

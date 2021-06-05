@@ -7,7 +7,3 @@ const initState = {
     groups: [],
     examInfo: []
 }
-
-export function deleteProblem(dataToSubmit) {
-
-}

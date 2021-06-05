@@ -28,8 +28,7 @@
     "redux-thunk": "^2.3.0",
     "styled-components": "^5.3.0",
     "use-state-with-callback": "^2.0.3",
-    "web-vitals": "^1.1.2",
-    "webpack": "^4.46.0"
+    "web-vitals": "^1.1.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -76,7 +75,6 @@
     "@storybook/node-logger": "^6.2.9",
     "@storybook/preset-create-react-app": "^3.1.7",
     "@storybook/react": "^6.2.9",
-    "@svgr/webpack": "^5.5.0",
     "node-sass": "^6.0.0",
     "resolve-url-loader": "^3.1.3"
   }

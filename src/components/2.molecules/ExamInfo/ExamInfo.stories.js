@@ -5,7 +5,7 @@ export default {
     title: '2.molecules/ExamInfo',
     component: ExamInfo,
     argTypes: {
-        backgroundColor: { control: 'color' },
+        backgroundColor: {control: 'color'},
     },
 };
 
