@@ -11,7 +11,7 @@ export function setStatus(params, chito) {
     if (chito.week % 16 === 0) {
         semester = semester - 1
         week = 16
-        if (chito.week % 32  === 0) {
+        if (chito.week % 32 === 0) {
             year = year - 1
         }
     }

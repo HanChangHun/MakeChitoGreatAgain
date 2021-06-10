@@ -101,7 +101,6 @@ export const Problem = ({x, y, health, sleepy}) => {
         setOpenSleepy(false);
     }
 
-
     return (<>
         <p className="timer" style={{
             margin: 0,

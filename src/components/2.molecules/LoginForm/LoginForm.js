@@ -9,6 +9,7 @@ import {Button} from "../../1.atoms/Button/Button";
 import {Shape} from "../../1.atoms/Shape/Shape";
 import {SignupForm} from "../SignupForm/SignupForm";
 import StartPage from "../../5.pages/StartPage/StartPage";
+import cookie from "react-cookies";
 
 function LoginForm(props) {
     const dispatch = useDispatch();
@@ -37,6 +38,7 @@ function LoginForm(props) {
         dispatch(loginUser(body))
             .then(response => {
                 if (response.payload.token) {
+                    cookie.save('token', response.payload.token, { path: '/' })
                     props.history.push('/main')
                 } else {
                     alert('Error˝')

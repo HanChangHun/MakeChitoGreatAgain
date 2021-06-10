@@ -9,11 +9,23 @@ export default function (SpecificComponent, option, adminRoute = null) {
 
         useEffect(() => {
             dispatch(auth(cookie.load("token"))).then(response => {
-                if (response.payload.authorities[0].authorityName === "ROLE_USER") {
-                    console.log("ROLE_USER")
-                    console.log(response)
+                let role = response.payload.authorities.length
+                console.log(response)
+                if (role === 2) {
+                    props.history.push('/admin')
+                }
+                if (!role) {
+                    if (option) {
+                        props.history.push('/login')
+                    }
                 } else {
-                    console.log("????")
+                    if (adminRoute && !(role === 2)) {
+                        props.history.push('/')
+                    } else {
+                        if (option === false) {
+                            props.history.push('/')
+                        }
+                    }
                 }
             })
         }, [])

@@ -11,8 +11,7 @@ export function auth(token) {
     }
     const request = axios.get('/api/user', {
         headers: headers
-    })
-        .then(response => response.data)
+    }).then(response => response.data)
 
     return {
         type: AUTH_USER,
@@ -25,7 +24,7 @@ export function loginUser(dataToSubmit) {
         .then(response => response.data)
     return {
         type: LOGIN_USER,
-        payload:request
+        payload: request
     }
 }
 

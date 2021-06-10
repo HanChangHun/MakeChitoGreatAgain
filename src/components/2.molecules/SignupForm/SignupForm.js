@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import { useDispatch } from 'react-redux';
-import { registerUser } from '../../../_actions/user_action';
+import {useDispatch} from 'react-redux';
+import {registerUser} from '../../../_actions/user_action';
 import StyledSignupForm from "./SignupForm.styles";
 import {Text} from "../../1.atoms/Text/Text";
 import {InputText} from "../../1.atoms/InputText/InputText";
@@ -34,7 +34,7 @@ export const SignupForm = () => {
     const onSignupHandler = (event) => {
         event.preventDefault();
 
-        if (Passwd !== PasswdConf){
+        if (Passwd !== PasswdConf) {
             return alert('Password and Password Configuration are not same.')
         }
 

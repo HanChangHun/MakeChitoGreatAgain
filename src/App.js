@@ -20,7 +20,7 @@ function App() {
                 <Route exact path="/main" component={Auth(MainPage, null)}/>
                 <Route exact path="/midterm" component={Auth(MidtermPage, null)}/>
                 <Route exact path="/final" component={Auth(FinalPage, null)}/>
-                <Route exact path="/admin" component={Auth(AdminPage, null)}/>
+                <Route exact path="/admin" component={Auth(AdminPage, null, true)}/>
             </Switch>
         </Router>
     );
