@@ -94,7 +94,7 @@ function MainPage(props) {
             <div className={"status"}>
                 <Text text={"Semester " + Year + " - " + Semester} size={"48px"} weight={700} color={"white"}/>
                 <Text text={"Week: " + Week} size={"36px"} weight={700} color={"white"}/>
-                <Text text={"Grade: " + Grade.toFixed(2)} size={"36px"} weight={700} color={"white"}/>
+                <Text text={"Grade: " + Grade} size={"36px"} weight={700} color={"white"}/>
                 <Text text={"Intelligence: " + Int} size={"36px"} weight={700} color={"white"}/>
                 <Text text={"Health: " + Health} size={"36px"} weight={700} color={"white"}/>
                 <Text text={"Speech: " + Speech} size={"36px"} weight={700} color={"white"}/>

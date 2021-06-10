@@ -5,10 +5,10 @@ import {object} from "prop-types";
 import {Text} from "../../1.atoms/Text/Text";
 import {ProblemEdit} from "../../1.atoms/InputText/ProblemEdit/ProblemEdit";
 import {Button} from "../../1.atoms/Button/Button";
+import cookie from "react-cookies";
 
-export const FinalProblemInfo = ({problem, variance}) => {
+export const FinalProblemInfo = ({problem, variance, ...props}) => {
     const [deleteClicked, setDeleteClicked] = useState(0);
-    const [hintFlag, setHintFlag] = useState(0);
 
     const [qBody, setQBody] = useState(problem.q_body);
     const [s1Body, setS1Body] = useState(problem.s1_body);
@@ -108,8 +108,10 @@ export const FinalProblemInfo = ({problem, variance}) => {
     }
 
     function hintOnClick() {
-        setHintFlag(1);
-        setHint2(hint);
+        if (cookie.load("hint") && cookie.load("hint") > props.usedHint) {
+            props.setUsedHint(props.usedHint + 1)
+            setHint2(hint);
+        }
     }
 
     if (deleteClicked === 1) {

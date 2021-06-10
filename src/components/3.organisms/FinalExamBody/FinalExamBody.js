@@ -34,12 +34,13 @@ function FinalExamBody({g_name, problems, answers, ...props}) {
     const [Hint, setHint] = useState(cookie.load("hint"));
     const [score, setScore] = useState(null);
     const [grade, setGrade] = useState(null);
-    const [usedHint, setUsedHint] = useState(null);
+    const [usedHint, setUsedHint] = useState(0);
     const [OpenEndModal, setOpenEndModal] = useState(false);
 
     let problem_comps = []
     for (let i = 0; i < problems.length; i++) {
-        problem_comps.push(<FinalProblemInfo variance={"exam"} problem={problems[i]}/>)
+        problem_comps.push(<FinalProblemInfo variance={"exam"} problem={problems[i]}
+                                             usedHint={usedHint} setUsedHint={setUsedHint}/>)
     }
 
     function scoreGrade(score) {
@@ -81,7 +82,7 @@ function FinalExamBody({g_name, problems, answers, ...props}) {
         e.preventDefault()
         props.history.push('/main')
 
-        dispatch(finalEnd(cookie.load("token"), grade, 1)).then(response => {
+        dispatch(finalEnd(cookie.load("token"), grade, usedHint)).then(response => {
             console.log(response)
         })
     }
