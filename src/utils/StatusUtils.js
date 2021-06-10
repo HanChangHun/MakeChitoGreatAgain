@@ -1,8 +1,9 @@
-export function setStatus(params, chito) {
-    params.setGrade(chito.grade);
+export function setStatus(params, chito, grade, hint) {
+    params.setGrade(grade);
     params.setInt(chito.intelligence);
     params.setHealth(chito.health);
     params.setSpeech(chito.speech);
+    params.setHint(hint);
 
     let year = parseInt(chito.week / 32) + 1
     let semester = parseInt((chito.week % 32) / 16) + 1

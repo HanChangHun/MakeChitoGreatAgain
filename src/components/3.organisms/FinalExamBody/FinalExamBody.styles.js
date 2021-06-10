@@ -9,7 +9,12 @@ const StyledFinalExamBody = styled.div`
   display: flex;
   flex-direction: column;
 
-  .problems {
+.body-top{
+  display: flex;
+  justify-content: space-between;
+}
+  
+  .problems-body {
     display: flex;
     flex-direction: column;
     align-items: center;

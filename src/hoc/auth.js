@@ -9,8 +9,8 @@ export default function (SpecificComponent, option, adminRoute = null) {
 
         useEffect(() => {
             dispatch(auth(cookie.load("token"))).then(response => {
-                let role = response.payload.authorities.length
                 console.log(response)
+                let role = response.payload.authorities.length
                 if (role === 2) {
                     props.history.push('/admin')
                 }

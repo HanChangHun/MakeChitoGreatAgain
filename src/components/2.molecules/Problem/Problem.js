@@ -90,6 +90,11 @@ function Problem(props) {
 
     useInterval(() => {
         setTimer(Timer + 1);
+        if (Timer >= 31) {
+            SetRecordTime(31);
+            setEnd(true);
+            setOpenEndModal(true);
+        }
     }, 1000);
 
     function attack() {
@@ -97,7 +102,6 @@ function Problem(props) {
             setNumClicked(NumClicked + 1)
             if (Sleepy > 0) {
                 openModal();
-                setSleepy(Sleepy - 1);
             }
         } else {
             SetRecordTime(Timer);
@@ -132,7 +136,6 @@ function Problem(props) {
         e.preventDefault()
         props.history.push('/main')
 
-        console.log("midtermEnd")
         dispatch(midtermEnd(cookie.load("token"), numHint(RecordTime))).then(response => {
             console.log(response)
         })

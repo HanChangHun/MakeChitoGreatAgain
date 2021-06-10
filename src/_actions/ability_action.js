@@ -37,14 +37,12 @@ export function speechAbility(token) {
 }
 
 export function midtermEnd(token, num) {
-    console.log({"num": num})
     const request = axios.post('/api/user/hint',
-        null, {
+        {"num": num}, {
             headers: {
                 Authorization: "Bearer " + token,
                 'Content-Type': 'application/json'
-            },
-            params: {"num": num}
+            }
         })
         .then(response => response.data)
     return {
@@ -53,9 +51,14 @@ export function midtermEnd(token, num) {
     }
 }
 
-export function finalEnd(token, grade) {
-    const request = axios.post('/api/user/hint',
-        null, {headers: {Authorization: "Bearer " + token}})
+export function finalEnd(token, grade, usedhint) {
+    const request = axios.post('/api/user/save/final',
+        {
+            "num": grade,
+            "usedhint": usedhint
+        }, {
+            headers: {Authorization: "Bearer " + token},
+        })
         .then(response => response.data)
     return {
         type: END_FINAL,

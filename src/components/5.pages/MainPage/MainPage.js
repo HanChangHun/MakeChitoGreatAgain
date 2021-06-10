@@ -22,6 +22,7 @@ function MainPage(props) {
     const [Health, setHealth] = useState(null);
     const [Speech, setSpeech] = useState(null);
     const [ActiveBtn, setActiveBtn] = useState(null);
+    const [Hint, setHint] = useState(null);
 
     let passParams = {
         Year: Year, setYear: setYear,
@@ -31,7 +32,8 @@ function MainPage(props) {
         Int: Int, setInt: setInt,
         Health: Health, setHealth: setHealth,
         Speech: Speech, setSpeech: setSpeech,
-        ActiveBtn: ActiveBtn, setActiveBtn: setActiveBtn
+        ActiveBtn: ActiveBtn, setActiveBtn: setActiveBtn,
+        Hint: Hint, setHint: setHint
     }
 
     const dispatch = useDispatch();
@@ -39,7 +41,7 @@ function MainPage(props) {
         if (response.payload.username === "admin") {
             return 0
         } else {
-            setStatus(passParams, response.payload.chito)
+            setStatus(passParams, response.payload.chito, response.payload.average, response.payload.hint)
         }
     })
 
@@ -57,6 +59,7 @@ function MainPage(props) {
 
     function toFinal(event) {
         cookie.save('semester', 2 * (Year - 1) + Semester)
+        cookie.save('hint', Hint)
         if (ActiveBtn === 2) {
             event.preventDefault()
             props.history.push("/final");
@@ -83,10 +86,11 @@ function MainPage(props) {
             <div className={"status"}>
                 <Text text={"Semester " + Year + " - " + Semester} size={"48px"} weight={700} color={"white"}/>
                 <Text text={"Week: " + Week} size={"36px"} weight={700} color={"white"}/>
-                <Text text={"Grade: " + Grade} size={"48px"} weight={700} color={"white"}/>
-                <Text text={"Intelligence: " + Int} size={"48px"} weight={700} color={"white"}/>
-                <Text text={"Health: " + Health} size={"48px"} weight={700} color={"white"}/>
-                <Text text={"Speech: " + Speech} size={"48px"} weight={700} color={"white"}/>
+                <Text text={"Grade: " + Grade} size={"36px"} weight={700} color={"white"}/>
+                <Text text={"Intelligence: " + Int} size={"36px"} weight={700} color={"white"}/>
+                <Text text={"Health: " + Health} size={"36px"} weight={700} color={"white"}/>
+                <Text text={"Speech: " + Speech} size={"36px"} weight={700} color={"white"}/>
+                <Text text={"# Hint: " + Hint} size={"24px"} weight={700} color={"white"}/>
             </div>
         </div>
     </StyledMainPage>);

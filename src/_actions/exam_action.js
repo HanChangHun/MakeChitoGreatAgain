@@ -12,10 +12,6 @@ export function getProblems(gid) {
     }
 }
 
-export function getExamInfo(gid) {
-    for (let i = 0; i < examInfo.length; i++) {
-        if (examInfo[i].gid === gid) {
-            return examInfo[i]
-        }
-    }
+export function getExamInfo(idx) {
+    return examInfo[idx]
 }

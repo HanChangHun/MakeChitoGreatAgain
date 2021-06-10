@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import StyledFinalProblemInfo from "./FinalProblemInfo.styles";
 import sample_data from './sample_prob_data.json'
-import {func, object} from "prop-types";
+import {object} from "prop-types";
 import {Text} from "../../1.atoms/Text/Text";
 import {ProblemEdit} from "../../1.atoms/InputText/ProblemEdit/ProblemEdit";
 import {Button} from "../../1.atoms/Button/Button";
@@ -15,7 +15,9 @@ export const FinalProblemInfo = ({problem, variance}) => {
     const [s2Body, setS2Body] = useState(problem.s2_body);
     const [s3Body, setS3Body] = useState(problem.s3_body);
     const [s4Body, setS4Body] = useState(problem.s4_body);
+
     const [ans, setAns] = useState(problem.ans);
+    const [ans2, setAns2] = useState("");
     const [hint, setHint] = useState(problem.hint);
     const [hint2, setHint2] = useState("");
 
@@ -25,6 +27,7 @@ export const FinalProblemInfo = ({problem, variance}) => {
     const onS3BodyHandler = (event) => setS3Body(event.currentTarget.value)
     const onS4BodyHandler = (event) => setS4Body(event.currentTarget.value)
     const onAnsHandler = (event) => setAns(event.currentTarget.value)
+    const onAns2Handler = (event) => setAns2(event.currentTarget.value)
     const onHintHandler = (event) => setHint(event.currentTarget.value)
 
     useEffect(() => {
@@ -72,7 +75,7 @@ export const FinalProblemInfo = ({problem, variance}) => {
     } else if (variance === "exam") {
         ansBody = (<div>
             <Text text={"Answer: "} size={"16px"} weight={400}/>
-            <ProblemEdit rows={1} onChange={onAnsHandler} size={"16px"} weight={400}
+            <ProblemEdit rows={1} value={ans2} onChange={onAns2Handler} size={"16px"} weight={400}
                          placeholder={"Input Answer Number"}/>
         </div>)
     }
