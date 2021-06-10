@@ -44,6 +44,12 @@ function LoginForm(props) {
             })
     }
 
+    const enterKeyHandler = (e) => {
+        if (e.key === "Enter") {
+            onLoginHandler(e)
+        }
+    }
+
     const onSignupHandler = (event) => {
         event.preventDefault();
         setSignup(true)
@@ -64,7 +70,8 @@ function LoginForm(props) {
                 <Text text={"ID"} weight={700} size={"48px"}/>
                 <InputText placeholder={""} value={Id} onChange={onIdHandler}/>
                 <Text text={"Password"} weight={700} size={"48px"}/>
-                <InputText placeholder={""} type={"Password"} value={Passwd} onChange={onPasswdHandler}/>
+                <InputText placeholder={""} type={"Password"} value={Passwd} onChange={onPasswdHandler}
+                           onKeyPress={enterKeyHandler}/>
                 <div className={"buttons"}>
                     <Button className={"signup"} label={"Sign Up"} variant={"secondary"} onClick={onSignupHandler}/>
                     <Button className={"login"} label={"Login"} variant={"secondary"} onClick={onLoginHandler}/>

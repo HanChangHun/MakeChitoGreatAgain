@@ -7,7 +7,7 @@ import {Button} from "../../1.atoms/Button/Button";
 import StudyBg from "../../0.particle/BgImages/StudyBg.png"
 import {useDispatch} from "react-redux";
 import {studyAbility} from "../../../_actions/ability_action";
-import {setStatus} from "../../../utils/AbilityUtils";
+import {setStatus} from "../../../utils/StatusUtils";
 
 const modalStyles = {
     content: {
@@ -25,7 +25,6 @@ const modalStyles = {
 };
 
 
-
 function StudyModalBtn({params, ...props}) {
     const dispatch = useDispatch();
 
@@ -36,32 +35,28 @@ function StudyModalBtn({params, ...props}) {
 
         dispatch(studyAbility(cookie.load('token')))
             .then(response => {
-                setStatus(params, response)
+                setStatus(params, response.payload)
             })
 
         setIsOpen(true);
     }
 
 
-    function closeModal(event) {
-        event.preventDefault();
-
-        params.setInt(params.Int + 3);
-        params.setHealth(params.Health - 1);
-        if (params.Speech === 0)
-            void (0)
-        else
-            params.setSpeech(params.Speech - 1);
+    function closeModal(e, setIsOpen) {
+        e.preventDefault();
         setIsOpen(false);
     }
 
     return (<StyledStudyModalBtn>
-            <Button className={"study-btn"} label={"Study"} variant={"secondary"} onClick={openModal}/>
+            <Button className={"study-btn"}
+                    label={"Study"}
+                    variant={"secondary"}
+                    onClick={(params.ActiveBtn === 0) ? openModal : null}/>
             <Modal
                 isOpen={modalIsOpen}
                 style={modalStyles}
                 ariaHideApp={false}
-                onRequestClose={(e) => closeModal(e)}
+                onRequestClose={(e) => closeModal(e, setIsOpen)}
                 shouldCloseOnOverlayClick={true}/>
         </StyledStudyModalBtn>
     );

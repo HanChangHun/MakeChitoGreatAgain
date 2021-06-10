@@ -7,7 +7,7 @@ import InterviewBg from "../../0.particle/BgImages/InterviewBg.png"
 import {useDispatch} from "react-redux";
 import {speechAbility} from "../../../_actions/ability_action";
 import cookie from "react-cookies";
-import {setStatus} from "../../../utils/AbilityUtils";
+import {setStatus} from "../../../utils/StatusUtils";
 
 const modalStyles = {
     content: {
@@ -35,46 +35,27 @@ function InterviewModalBtn({params, ...props}) {
 
         dispatch(speechAbility(cookie.load('token')))
             .then(response => {
-                setStatus(params, response)
+                setStatus(params, response.payload)
             })
 
         setIsOpen(true);
     }
 
-    function closeModal() {
-        params.setInt(params.Int - 1);
-        params.setHealth(params.Health - 1);
-        params.setSpeech(params.Speech + 3);
+    function closeModal(e) {
+        e.preventDefault();
         setIsOpen(false);
     }
 
-    // const dispatch = useDispatch();
-
-    // const onInterviewHandler = (event) => {
-    //     event.preventDefault();
-    //
-    //     let body = {}
-    //
-    //     dispatch(loginUser(body))
-    //         .then(response => {
-    //             if (response.payload) {
-    //                 console.log(response.payload)
-    //                 props.history.push('/main')
-    //             } else {
-    //                 alert('Error˝')
-    //             }
-    //         })
-    // }
-
-
     return (<StyledInterviewModalBtn>
-            <Button className={"workout-btn"} label={"Prepare Interview"} variant={"secondary"} onClick={openModal}/>
+            <Button className={"workout-btn"}
+                    label={"Prepare Interview"}
+                    variant={"secondary"}
+                    onClick={(params.ActiveBtn === 0) ? openModal : null}/>
             <Modal
                 isOpen={modalIsOpen}
                 style={modalStyles}
-            >
-                <button onClick={closeModal}>close</button>
-            </Modal>
+                onRequestClose={(e) => closeModal(e)}
+                shouldCloseOnOverlayClick={true}/>
         </StyledInterviewModalBtn>
     );
 }

@@ -13,11 +13,13 @@ function StartPage() {
         setLogin(true)
     }
 
+
+
     if (Login) {
         return (<StyledStartPage>
             <div className={"main-block"}>
                 <div className={"modal-login"}>
-                    <LoginForm />
+                    <LoginForm/>
                 </div>
             </div>
         </StyledStartPage>)

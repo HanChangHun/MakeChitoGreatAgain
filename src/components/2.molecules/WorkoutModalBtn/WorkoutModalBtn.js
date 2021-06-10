@@ -6,7 +6,7 @@ import {Button} from "../../1.atoms/Button/Button";
 import WorkoutBg from "../../0.particle/BgImages/WorkoutBg.png"
 import {workoutAbility} from "../../../_actions/ability_action";
 import cookie from "react-cookies";
-import {setStatus} from "../../../utils/AbilityUtils";
+import {setStatus} from "../../../utils/StatusUtils";
 import {useDispatch} from "react-redux";
 
 const modalStyles = {
@@ -35,31 +35,27 @@ function WorkoutModalBtn({params, ...props}) {
 
         dispatch(workoutAbility(cookie.load('token')))
             .then(response => {
-                setStatus(params, response)
+                setStatus(params, response.payload)
             })
 
         setIsOpen(true);
     }
 
-    function closeModal() {
-        params.setInt(params.Int - 1);
-        params.setHealth(params.Health + 3);
-        if (params.Speech === 0)
-            void (0)
-        else
-            params.setSpeech(params.Speech - 1);
-
+    function closeModal(e) {
+        e.preventDefault();
         setIsOpen(false);
     }
 
     return (<StyledWorkoutModalBtn>
-            <Button className={"workout-btn"} label={"Workout"} variant={"secondary"} onClick={openModal}/>
+            <Button className={"workout-btn"}
+                    label={"Workout"}
+                    variant={"secondary"}
+                    onClick={(params.ActiveBtn === 0) ? openModal : null}/>
             <Modal
                 isOpen={modalIsOpen}
                 style={modalStyles}
-            >
-                <button onClick={closeModal}>close</button>
-            </Modal>
+                onRequestClose={(e) => closeModal(e)}
+                shouldCloseOnOverlayClick={true}/>
         </StyledWorkoutModalBtn>
     );
 }

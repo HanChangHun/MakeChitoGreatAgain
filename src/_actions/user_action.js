@@ -20,7 +20,6 @@ export function auth(token) {
     }
 }
 
-
 export function loginUser(dataToSubmit) {
     const request = axios.post('/api/authenticate', null, {params: dataToSubmit})
         .then(response => response.data)

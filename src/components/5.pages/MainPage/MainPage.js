@@ -7,19 +7,21 @@ import {Link, withRouter} from "react-router-dom";
 import StudyModalBtn from "../../2.molecules/StudyModalBtn/StudyModalBtn";
 import WorkoutModalBtn from "../../2.molecules/WorkoutModalBtn/WorkoutModalBtn";
 import InterviewModalBtn from "../../2.molecules/InterviewModalBtn/InterviewModalBtn";
+import {useDispatch} from "react-redux";
+import {auth} from "../../../_actions/user_action";
+import cookie from "react-cookies";
+import {setStatus} from "../../../utils/StatusUtils";
 
 
 function MainPage(props) {
-    console.log("")
-
-    const [Year, setYear] = useState(1);
-    const [Semester, setSemester] = useState(1);
-    const [Week, setWeek] = useState(1);
+    const [Year, setYear] = useState(null);
+    const [Semester, setSemester] = useState(null);
+    const [Week, setWeek] = useState(null);
     const [Grade, setGrade] = useState(null);
-    const [Int, setInt] = useState(10);
-    const [Health, setHealth] = useState(10);
-    const [Speech, setSpeech] = useState(10);
-    const [ActiveBtn, setActiveBtn] = useState(0);
+    const [Int, setInt] = useState(null);
+    const [Health, setHealth] = useState(null);
+    const [Speech, setSpeech] = useState(null);
+    const [ActiveBtn, setActiveBtn] = useState(null);
 
     let passParams = {
         Year: Year, setYear: setYear,
@@ -32,10 +34,14 @@ function MainPage(props) {
         ActiveBtn: ActiveBtn, setActiveBtn: setActiveBtn
     }
 
+    const dispatch = useDispatch();
+    dispatch(auth(cookie.load("token"))).then(response => {
+        setStatus(passParams, response.payload.chito)
+    })
+
     function onLogoutHandler() {
         props.history.push("/");
     }
-
 
     return (<StyledMainPage>
         <div className={"main-block"}>
