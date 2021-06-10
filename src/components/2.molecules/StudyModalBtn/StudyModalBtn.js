@@ -1,9 +1,13 @@
 import React, {useState} from 'react';
 import {withRouter} from "react-router-dom";
 import Modal from 'react-modal';
+import cookie from 'react-cookies';
 import StyledStudyModalBtn from "./StudyModalBtn.styles";
 import {Button} from "../../1.atoms/Button/Button";
 import StudyBg from "../../0.particle/BgImages/StudyBg.png"
+import {useDispatch} from "react-redux";
+import {studyAbility} from "../../../_actions/ability_action";
+import {setStatus} from "../../../utils/AbilityUtils";
 
 const modalStyles = {
     content: {
@@ -21,63 +25,44 @@ const modalStyles = {
 };
 
 
+
 function StudyModalBtn({params, ...props}) {
+    const dispatch = useDispatch();
+
     const [modalIsOpen, setIsOpen] = useState(false);
 
-    function openModal() {
-        params.setWeek(params.Week + 1);
+    function openModal(event) {
+        event.preventDefault();
 
-        if (params.Week === 7)
-            params.setActiveBtn(1)
-        else if (params.Week === 15)
-            params.setActiveBtn(2)
-        else
-            params.setActiveBtn(0)
+        dispatch(studyAbility(cookie.load('token')))
+            .then(response => {
+                setStatus(params, response)
+            })
 
-        console.log(params.ActiveBtn)
         setIsOpen(true);
     }
 
-    // function afterOpenModal() {
-    // }
 
-    function closeModal() {
+    function closeModal(event) {
+        event.preventDefault();
+
         params.setInt(params.Int + 3);
         params.setHealth(params.Health - 1);
-        if (params.Speech === 0 )
-            void(0)
+        if (params.Speech === 0)
+            void (0)
         else
             params.setSpeech(params.Speech - 1);
         setIsOpen(false);
     }
-
-    // const dispatch = useDispatch();
-
-    // const onStudyHandler = (event) => {
-    //     event.preventDefault();
-    //
-    //     let body = {}
-    //
-    //     dispatch(loginUser(body))
-    //         .then(response => {
-    //             if (response.payload) {
-    //                 console.log(response.payload)
-    //                 props.history.push('/main')
-    //             } else {
-    //                 alert('Error˝')
-    //             }
-    //         })
-    // }
-
 
     return (<StyledStudyModalBtn>
             <Button className={"study-btn"} label={"Study"} variant={"secondary"} onClick={openModal}/>
             <Modal
                 isOpen={modalIsOpen}
                 style={modalStyles}
-            >
-                <button onClick={closeModal}>close</button>
-            </Modal>
+                ariaHideApp={false}
+                onRequestClose={(e) => closeModal(e)}
+                shouldCloseOnOverlayClick={true}/>
         </StyledStudyModalBtn>
     );
 }

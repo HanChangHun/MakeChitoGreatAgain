@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {withRouter} from "react-router-dom";
-import cookie from 'react-cookies';
 import {loginUser} from '../../../_actions/user_action';
 import StyledLoginForm from "./LoginForm.styles";
 import {LinkedText, Text} from "../../1.atoms/Text/Text";
@@ -38,8 +37,6 @@ function LoginForm(props) {
         dispatch(loginUser(body))
             .then(response => {
                 if (response.payload.token) {
-                    console.log(response.payload)
-                    cookie.save("token", response.payload.token)
                     props.history.push('/main')
                 } else {
                     alert('Error˝')

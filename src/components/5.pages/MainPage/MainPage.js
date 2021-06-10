@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import StyledStartPage from "./MainPage.styles";
+import StyledMainPage from "./MainPage.styles";
 import {Button} from "../../1.atoms/Button/Button";
 import mainChito from "../../0.particle/Char/MainChar.png";
 import {Text} from "../../1.atoms/Text/Text";
@@ -10,6 +10,8 @@ import InterviewModalBtn from "../../2.molecules/InterviewModalBtn/InterviewModa
 
 
 function MainPage(props) {
+    console.log("")
+
     const [Year, setYear] = useState(1);
     const [Semester, setSemester] = useState(1);
     const [Week, setWeek] = useState(1);
@@ -35,7 +37,7 @@ function MainPage(props) {
     }
 
 
-    return (<StyledStartPage>
+    return (<StyledMainPage>
         <div className={"main-block"}>
             <div className="logout">
                 <Button label={"Logout"} variant={"secondary"} onClick={onLogoutHandler}/>
@@ -47,7 +49,7 @@ function MainPage(props) {
                 <InterviewModalBtn params={passParams}/>
             </div>
             <div className={"buttons2"}>
-                <Link to={'/midterm'}  onClick={(ActiveBtn===0) ? (event) => event.preventDefault() : null}>
+                <Link to={'/midterm'} onClick={(ActiveBtn === 0) ? (event) => event.preventDefault() : null}>
                     <Button className={(ActiveBtn === 1) ? "midterm-btn" : "midterm-btn disabled"}
                             label={"Midterm Exam"} variant={"secondary"}/>
                 </Link>
@@ -65,7 +67,7 @@ function MainPage(props) {
                 <Text text={"Speech: " + Speech} size={"48px"} weight={700} color={"white"}/>
             </div>
         </div>
-    </StyledStartPage>);
+    </StyledMainPage>);
 }
 
 MainPage.propTypes = {};

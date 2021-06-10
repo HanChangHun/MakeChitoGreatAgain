@@ -5,9 +5,9 @@ import {
 } from './types';
 import axios from "axios";
 
-export function studyAbility(dataToSubmit) {
+export function studyAbility(token) {
     const request = axios.post('/api/activity/study',
-        null, {params: dataToSubmit})
+        null, {headers: {Authorization: "Bearer "  + token}})
         .then(response => response.data)
     return {
         type: STUDY_ABILITY,
@@ -15,9 +15,9 @@ export function studyAbility(dataToSubmit) {
     }
 }
 
-export function workoutAbility(dataToSubmit) {
+export function workoutAbility(token) {
     const request = axios.post('/api/activity/workout',
-        null, {params: dataToSubmit})
+        null, {headers: {Authorization: "Bearer "  + token}})
         .then(response => response.data)
     return {
         type: WORKOUT_ABILITY,
@@ -25,9 +25,9 @@ export function workoutAbility(dataToSubmit) {
     }
 }
 
-export function speechAbility(dataToSubmit) {
+export function speechAbility(token) {
     const request = axios.post('/api/activity/interview',
-        null, {params: dataToSubmit})
+        null, {headers: {Authorization: "Bearer "  + token}})
         .then(response => response.data)
     return {
         type: SPEECH_ABILITY,

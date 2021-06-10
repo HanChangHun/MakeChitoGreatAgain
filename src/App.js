@@ -15,13 +15,13 @@ import AdminPage from "./components/5.pages/AdminPage/AdminPage";
 function App() {
     return (
         <Router>
-                <Switch>
-                    <Route exact path="/" component={Auth(StartPage, null)}/>
-                    <Route exact path="/main" component={Auth(MainPage, null)}/>
-                    <Route exact path="/midterm" component={Auth(MidtermPage, null)}/>
-                    <Route exact path="/final" component={Auth(FinalPage, null)}/>
-                    <Route exact path="/admin" component={Auth(AdminPage, null)}/>
-                </Switch>
+            <Switch>
+                <Route exact path="/" component={Auth(StartPage, null)}/>
+                <Route exact path="/main" component={Auth(MainPage, null)}/>
+                <Route exact path="/midterm" component={Auth(MidtermPage, null)}/>
+                <Route exact path="/final" component={Auth(FinalPage, null)}/>
+                <Route exact path="/admin" component={Auth(AdminPage, null)}/>
+            </Switch>
         </Router>
     );
 }

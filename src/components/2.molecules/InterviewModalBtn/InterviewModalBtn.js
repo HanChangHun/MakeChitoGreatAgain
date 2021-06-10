@@ -4,6 +4,10 @@ import Modal from 'react-modal';
 import StyledInterviewModalBtn from "./InterviewModalBtn.styles";
 import {Button} from "../../1.atoms/Button/Button";
 import InterviewBg from "../../0.particle/BgImages/InterviewBg.png"
+import {useDispatch} from "react-redux";
+import {speechAbility} from "../../../_actions/ability_action";
+import cookie from "react-cookies";
+import {setStatus} from "../../../utils/AbilityUtils";
 
 const modalStyles = {
     content: {
@@ -22,23 +26,20 @@ const modalStyles = {
 
 
 function InterviewModalBtn({params, ...props}) {
+    const dispatch = useDispatch();
+
     const [modalIsOpen, setIsOpen] = useState(false);
 
-    function openModal() {
-        params.setWeek(params.Week + 1);
+    function openModal(event) {
+        event.preventDefault();
 
-        if (params.Week === 7)
-            params.setActiveBtn(1)
-        else if (params.Week === 15)
-            params.setActiveBtn(2)
-        else
-            params.setActiveBtn(0)
+        dispatch(speechAbility(cookie.load('token')))
+            .then(response => {
+                setStatus(params, response)
+            })
 
         setIsOpen(true);
     }
-
-    // function afterOpenModal() {
-    // }
 
     function closeModal() {
         params.setInt(params.Int - 1);
