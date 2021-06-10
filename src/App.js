@@ -17,9 +17,9 @@ function App() {
         <Router>
             <Switch>
                 <Route exact path="/" component={Auth(StartPage, null)}/>
-                <Route exact path="/main" component={Auth(MainPage, null)}/>
-                <Route exact path="/midterm" component={Auth(MidtermPage, null)}/>
-                <Route exact path="/final" component={Auth(FinalPage, null)}/>
+                <Route exact path="/main" component={Auth(MainPage, 1)}/>
+                <Route exact path="/midterm" component={Auth(MidtermPage, 1)}/>
+                <Route exact path="/final" component={Auth(FinalPage, 1)}/>
                 <Route exact path="/admin" component={Auth(AdminPage, null, true)}/>
             </Switch>
         </Router>

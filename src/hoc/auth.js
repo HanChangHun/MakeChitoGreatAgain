@@ -14,18 +14,17 @@ export default function (SpecificComponent, option, adminRoute = null) {
                 if (role === 2) {
                     props.history.push('/admin')
                 }
-                if (!role) {
-                    if (option) {
-                        props.history.push('/login')
-                    }
+
+                if (adminRoute && !(role === 2)) {
+                    props.history.push('/')
                 } else {
-                    if (adminRoute && !(role === 2)) {
+                    if (option === false) {
                         props.history.push('/')
-                    } else {
-                        if (option === false) {
-                            props.history.push('/')
-                        }
                     }
+                }
+            }).catch(e => {
+                if (option) {
+                    props.history.push('/')
                 }
             })
         }, [])
