@@ -11,7 +11,8 @@ export function auth(token) {
     }
     const request = axios.get('/api/user', {
         headers: headers
-    }).then(response => response.data)
+    })
+        .then(response => response.data)
 
     return {
         type: AUTH_USER,
@@ -19,8 +20,9 @@ export function auth(token) {
     }
 }
 
+
 export function loginUser(dataToSubmit) {
-    const request = axios.post('/api/authenticate', null, {params: dataToSubmit})
+    const request = axios.post('/api/authenticate', dataToSubmit, null)
         .then(response => response.data)
     return {
         type: LOGIN_USER,

@@ -9,6 +9,7 @@ import {getMidtermStatus} from "../../../utils/midtermUtils";
 import cookie from "react-cookies";
 import {auth} from "../../../_actions/user_action";
 import {useDispatch} from "react-redux";
+import {midtermEnd} from "../../../_actions/ability_action";
 
 const sleepyModalStyles = {
     content: {
@@ -131,8 +132,10 @@ function Problem(props) {
         e.preventDefault()
         props.history.push('/main')
 
-        // dispatch(midtermEnd(cookie.load("token"), numHint(RecordTime))).then(response => {
-        // })
+        console.log("midtermEnd")
+        dispatch(midtermEnd(cookie.load("token"), numHint(RecordTime))).then(response => {
+            console.log(response)
+        })
     }
 
     return (<>

@@ -9,7 +9,7 @@ import WorkoutModalBtn from "../../2.molecules/WorkoutModalBtn/WorkoutModalBtn";
 import InterviewModalBtn from "../../2.molecules/InterviewModalBtn/InterviewModalBtn";
 import {useDispatch} from "react-redux";
 import {auth} from "../../../_actions/user_action";
-import cookie from "react-cookies";
+import cookie, {remove} from "react-cookies";
 import {setStatus} from "../../../utils/StatusUtils";
 
 
@@ -43,8 +43,9 @@ function MainPage(props) {
         }
     })
 
-    function onLogoutHandler() {
-        props.history.push("/");
+    const onLogoutHandler = () => {
+        remove('token', {path: '/'})
+        props.history.push('/')
     }
 
     function toMidterm(event) {
@@ -55,7 +56,7 @@ function MainPage(props) {
     }
 
     function toFinal(event) {
-        console.log(ActiveBtn)
+        cookie.save('semester', 2 * (Year - 1) + Semester)
         if (ActiveBtn === 2) {
             event.preventDefault()
             props.history.push("/final");

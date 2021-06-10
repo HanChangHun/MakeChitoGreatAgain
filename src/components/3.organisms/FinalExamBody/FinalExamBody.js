@@ -1,21 +1,15 @@
-import React, {useState} from 'react';
+import React from 'react';
 import StyledAdminProbBody from "./FinalExamBody.styles";
 import {Text} from "../../1.atoms/Text/Text";
 import {Button} from "../../1.atoms/Button/Button";
-import {GroupNameEdit} from "../../1.atoms/InputText/GroupNameEdit/GroupNameEdit";
 import {FinalProblemInfo} from "../../2.molecules/FinalProblemInfo/FinalProblemInfo";
 import {array} from "prop-types";
-import sample_data from './sample_prob_data.json'
 
 export const FinalExamBody = ({g_name, problems}) => {
     let problem_comps = []
     for (let i = 0; i < problems.length; i++) {
         problem_comps.push(<FinalProblemInfo variance={"exam"} problem={problems[i]}/>)
     }
-    const [problemList, setProblemList] = useState(problem_comps)
-    const [groupName, setGroupName] = useState(g_name)
-
-    const onGroupNameHandler = (event) => setGroupName(event.currentTarget.value)
 
     function getAllData() {
         let answerList = []
@@ -37,10 +31,10 @@ export const FinalExamBody = ({g_name, problems}) => {
         <Text text={"Final Exam"} weight={700} size={"50px"}/>
         <Text text={"Exam Name"} weight={700} size={"30px"}/>
         <div className={"group-name"}>
-            <Text value={groupName} weight={600} size={"24px"}/>
+            <Text text={g_name} weight={600} size={"24px"}/>
         </div>
         <div className={"problems"}>
-            {problemList}
+            {problem_comps}
         </div>
         <div className="buttons">
             <Button label={"Submit"} variant={"secondary"} onClick={getAllData}/>
@@ -53,6 +47,4 @@ FinalExamBody.propTypes = {
     problems: array
 };
 
-FinalExamBody.defaultProps = {
-    problems: sample_data.problems
-};
+FinalExamBody.defaultProps = {};

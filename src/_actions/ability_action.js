@@ -37,8 +37,15 @@ export function speechAbility(token) {
 }
 
 export function midtermEnd(token, num) {
+    console.log({"num": num})
     const request = axios.post('/api/user/hint',
-        null, {headers: {Authorization: "Bearer " + token}})
+        null, {
+            headers: {
+                Authorization: "Bearer " + token,
+                'Content-Type': 'application/json'
+            },
+            params: {"num": num}
+        })
         .then(response => response.data)
     return {
         type: END_MIDTERM,
