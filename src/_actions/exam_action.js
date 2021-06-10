@@ -13,5 +13,6 @@ export function getProblems(gid) {
 }
 
 export function getExamInfo(idx) {
+    console.log(idx)
     return examInfo[idx]
 }
