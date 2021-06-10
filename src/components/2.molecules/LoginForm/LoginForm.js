@@ -37,13 +37,16 @@ function LoginForm(props) {
 
         dispatch(loginUser(body))
             .then(response => {
+                console.log(response)
                 if (response.payload.token) {
                     cookie.save('token', response.payload.token, { path: '/' })
                     props.history.push('/main')
                 } else {
-                    alert('Error˝')
+                    throw Error
                 }
-            })
+            }).catch(()=>alert("Check Id/Password"))
+
+
     }
 
     const enterKeyHandler = (e) => {

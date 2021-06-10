@@ -48,9 +48,9 @@ export const SignupForm = () => {
                 if (response.payload.authorities) {
                     setClose(true)
                 } else {
-                    alert("Failed to sign up")
+                    throw Error("error")
                 }
-            })
+            }).catch(() => alert('Duplicate ID.'))
     }
     const onCloseHandler = (event) => {
         event.preventDefault();
