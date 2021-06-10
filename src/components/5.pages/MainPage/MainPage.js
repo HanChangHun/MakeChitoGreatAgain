@@ -51,6 +51,14 @@ function MainPage(props) {
     }
 
     function toMidterm(event) {
+        let maxHealth = 50 * ((2 * (Year - 1)) + Semester)
+        let sleepy = 10 * ((2 * (Year - 1)) + Semester) / Health
+        console.log("maxHealth: " + maxHealth)
+        console.log("sleepy: " + sleepy)
+        cookie.save('max_health', maxHealth)
+        cookie.save('damage', Int)
+        cookie.save('sleepy', sleepy)
+
         if (ActiveBtn === 1) {
             event.preventDefault()
             props.history.push("/midterm");

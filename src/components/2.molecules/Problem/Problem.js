@@ -5,9 +5,7 @@ import SleepyImg from "../../0.particle/Char/Sleepy.png"
 import Modal from 'react-modal';
 import {Button} from "../../1.atoms/Button/Button";
 import {withRouter} from "react-router-dom";
-import {getMidtermStatus} from "../../../utils/midtermUtils";
 import cookie from "react-cookies";
-import {auth} from "../../../_actions/user_action";
 import {useDispatch} from "react-redux";
 import {midtermEnd} from "../../../_actions/ability_action";
 
@@ -45,34 +43,19 @@ const endModalStyles = {
 };
 
 function Problem(props) {
-    const [MaxHealth, setMaxHealth] = useState(null);
-    const [CurrentHealth, setCurrentHealth] = useState(null);
+    const dispatch = useDispatch();
+
+    const maxHealth = parseInt(cookie.load("max_health"))
+    const damage = parseInt(cookie.load("damage"))
+    const sleepy = parseInt(cookie.load("sleepy"))
+    const [CurrentHealth, setCurrentHealth] = useState(maxHealth);
     const [NumClicked, setNumClicked] = useState(0);
-    const [Damage, setDamage] = useState(null);
-    const [Sleepy, setSleepy] = useState(null);
     const [End, setEnd] = useState(false);
     const [OpenSleepy, setOpenSleepy] = useState(false);
 
     const [Timer, setTimer] = useState(0)
     const [RecordTime, SetRecordTime] = useState(0)
     const [OpenEndModal, setOpenEndModal] = useState(false);
-
-    let passParams = {
-        MaxHealth: MaxHealth, setMaxHealth: setMaxHealth,
-        CurrentHealth: CurrentHealth, setCurrentHealth: setCurrentHealth,
-        NumClicked: NumClicked, setNumClicked: setNumClicked,
-        Damage: Damage, setDamage: setDamage,
-        Sleepy: Sleepy, setSleepy: setSleepy,
-    }
-
-    const dispatch = useDispatch();
-    dispatch(auth(cookie.load("token"))).then(response => {
-        if (response.payload.username === "admin") {
-            return 0
-        } else {
-            getMidtermStatus(passParams, response.payload.chito)
-        }
-    })
 
     function useInterval(callback, delay) {
         const savedCallback = useRef();
@@ -98,9 +81,10 @@ function Problem(props) {
     }, 1000);
 
     function attack() {
-        if (CurrentHealth - Damage > 0) {
+        if (CurrentHealth - damage > 0) {
+            setCurrentHealth(CurrentHealth - damage)
             setNumClicked(NumClicked + 1)
-            if (Sleepy > 0) {
+            if (sleepy > NumClicked) {
                 openModal();
             }
         } else {
@@ -156,7 +140,7 @@ function Problem(props) {
         <StyledProblem>
             <img className={End ? 'problem-disabled' : 'problem-enabled'} src={ProblemImg} alt="Problem"
                  onClick={attack}/>
-            <progress className="progressTag" value={CurrentHealth} max={MaxHealth}/>
+            <progress className="progressTag" value={CurrentHealth} max={maxHealth}/>
             <Modal
                 isOpen={OpenSleepy}
                 ariaHideApp={false}
