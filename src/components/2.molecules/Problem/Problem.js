@@ -2,10 +2,13 @@ import React, {useEffect, useRef, useState} from 'react';
 import StyledProblem from "./Problem.styles";
 import ProblemImg from "../../0.particle/Char/Problem.png"
 import SleepyImg from "../../0.particle/Char/Sleepy.png"
-import {number} from "prop-types";
 import Modal from 'react-modal';
 import {Button} from "../../1.atoms/Button/Button";
-import {Link} from "react-router-dom";
+import {withRouter} from "react-router-dom";
+import {getMidtermStatus} from "../../../utils/midtermUtils";
+import cookie from "react-cookies";
+import {auth} from "../../../_actions/user_action";
+import {useDispatch} from "react-redux";
 
 const sleepyModalStyles = {
     content: {
@@ -18,7 +21,7 @@ const sleepyModalStyles = {
         transform: 'translate(-50%, -50%)',
         background: "rgba(0,0,0,0)",
         backgroundSize: '100% 100%',
-        border:0
+        border: 0
     }
 };
 
@@ -40,18 +43,35 @@ const endModalStyles = {
     }
 };
 
-export const Problem = ({x, y, health, sleepy}) => {
-
-    const [Health, setHealth] = useState(health);
-    const [CurrentHealth, setCurrentHealth] = useState(health);
+function Problem(props) {
+    const [MaxHealth, setMaxHealth] = useState(null);
+    const [CurrentHealth, setCurrentHealth] = useState(null);
+    const [NumClicked, setNumClicked] = useState(0);
+    const [Damage, setDamage] = useState(null);
+    const [Sleepy, setSleepy] = useState(null);
     const [End, setEnd] = useState(false);
     const [OpenSleepy, setOpenSleepy] = useState(false);
-    const [Sleepy, setSleepy] = useState(sleepy);
 
     const [Timer, setTimer] = useState(0)
     const [RecordTime, SetRecordTime] = useState(0)
     const [OpenEndModal, setOpenEndModal] = useState(false);
 
+    let passParams = {
+        MaxHealth: MaxHealth, setMaxHealth: setMaxHealth,
+        CurrentHealth: CurrentHealth, setCurrentHealth: setCurrentHealth,
+        NumClicked: NumClicked, setNumClicked: setNumClicked,
+        Damage: Damage, setDamage: setDamage,
+        Sleepy: Sleepy, setSleepy: setSleepy,
+    }
+
+    const dispatch = useDispatch();
+    dispatch(auth(cookie.load("token"))).then(response => {
+        if (response.payload.username === "admin") {
+            return 0
+        } else {
+            getMidtermStatus(passParams, response.payload.chito)
+        }
+    })
 
     function useInterval(callback, delay) {
         const savedCallback = useRef();
@@ -72,10 +92,9 @@ export const Problem = ({x, y, health, sleepy}) => {
     }, 1000);
 
     function attack() {
-        if (CurrentHealth - 10 >= 0) {
-            setCurrentHealth(CurrentHealth - 10);
+        if (CurrentHealth - Damage > 0) {
+            setNumClicked(NumClicked + 1)
             if (Sleepy > 0) {
-                console.log("Hello " + Sleepy);
                 openModal();
                 setSleepy(Sleepy - 1);
             }
@@ -101,11 +120,26 @@ export const Problem = ({x, y, health, sleepy}) => {
         setOpenSleepy(false);
     }
 
+    function numHint(time) {
+        if (time > 30) return 0
+        else if (time >= 20) return 1
+        else if (time >= 10) return 2
+        else return 3
+    }
+
+    function toMain(e) {
+        e.preventDefault()
+        props.history.push('/main')
+
+        // dispatch(midtermEnd(cookie.load("token"), numHint(RecordTime))).then(response => {
+        // })
+    }
+
     return (<>
         <p className="timer" style={{
             margin: 0,
             position: "absolute",
-            float:"left",
+            float: "left",
             left: "50%",
             fontSize: "70px",
             fontFamily: "S-Core",
@@ -115,43 +149,32 @@ export const Problem = ({x, y, health, sleepy}) => {
         }}>{End ? RecordTime : Timer}</p>
         <StyledProblem>
             <img className={End ? 'problem-disabled' : 'problem-enabled'} src={ProblemImg} alt="Problem"
-                 onClick={attack}
-                 style={{left: x, top: y}}/>
-            <progress className="progressTag" value={CurrentHealth} max={Health}/>
+                 onClick={attack}/>
+            <progress className="progressTag" value={CurrentHealth} max={MaxHealth}/>
             <Modal
                 isOpen={OpenSleepy}
-                style={sleepyModalStyles}
-            >
+                ariaHideApp={false}
+                style={sleepyModalStyles}>
                 <img src={SleepyImg} alt="Sleepy" onClick={closeModal} style={{width: "100%", height: "100%"}}/>
             </Modal>
             <Modal
                 isOpen={OpenEndModal}
-                style={endModalStyles}
-            >
+                ariaHideApp={false}
+                style={endModalStyles}>
                 <p style={{
                     textAlign: "center"
-                }}>Slain time : {RecordTime}</p>
+                }}>Slain time: {RecordTime}</p>
                 <p style={{
                     textAlign: "center"
-                }}>Obtain hint : 3</p>
-                <Link to={"/main"}>
-                    <Button label={"OK"}/>
-                </Link>
+                }}>Obtain hint: {numHint(RecordTime)}</p>
+                <Button onClick={toMain} label={"OK"}/>
             </Modal>
         </StyledProblem>
     </>);
-};
+}
 
-Problem.propTypes = {
-    x: number,
-    y: number,
-    health: number,
-    sleepy: number,
-};
+Problem.propTypes = {};
 
-Problem.defaultProps = {
-    x: 100,
-    y: 100,
-    health: 100,
-    sleepy: 5
-};
+Problem.defaultProps = {};
+
+export default withRouter(Problem)

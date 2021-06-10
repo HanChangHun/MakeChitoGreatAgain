@@ -59,14 +59,12 @@ const StyledMainPage = styled.div.attrs({className: 'page-container page'})`
     display: flex;
     justify-content: center;
 
-    a {
-      button {
-        height: 140px;
-        width: 525px;
-      }
+    button {
+      height: 140px;
+      width: 525px;
     }
 
-    a + a {
+    button + button {
       margin-left: 42px;
     }
   }

@@ -25,19 +25,17 @@ const modalStyles = {
 };
 
 
-function StudyModalBtn({params, ...props}) {
+function StudyModalBtn({params}) {
     const dispatch = useDispatch();
 
     const [modalIsOpen, setIsOpen] = useState(false);
 
     function openModal(event) {
         event.preventDefault();
-
         dispatch(studyAbility(cookie.load('token')))
             .then(response => {
                 setStatus(params, response.payload)
             })
-
         setIsOpen(true);
     }
 

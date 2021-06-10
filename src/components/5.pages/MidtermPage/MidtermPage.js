@@ -1,7 +1,7 @@
 import React from 'react';
 import {withRouter} from "react-router-dom";
 import StyledMidtermPage from "./MidtermPage.styles";
-import {Problem} from "../../2.molecules/Problem/Problem";
+import Problem from "../../2.molecules/Problem/Problem";
 
 
 function MidtermPage() {

@@ -6,6 +6,9 @@ const StyledAdminSidebar = styled.div`
   background: #FFFFFF;
   border-radius: 10px;
   margin-right: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   ul {
     list-style-type: none;
