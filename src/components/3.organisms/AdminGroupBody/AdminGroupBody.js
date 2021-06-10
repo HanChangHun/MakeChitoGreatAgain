@@ -5,19 +5,24 @@ import {Button} from "../../1.atoms/Button/Button";
 import ProblemGroup from "../../2.molecules/ProblemGroup/ProblemGroup";
 import {withRouter} from "react-router-dom";
 
-function AdminGroupBody({groups, props}) {
+function AdminGroupBody({groups, setGid, setGName}) {
     let elements = [];
     for (let i = 0; i < groups.length; i++) {
-        elements.push(<ProblemGroup gid={groups[i].gid} g_name={groups[i].g_name} num_prob={groups[i].num_problems}/>);
+        elements.push(<ProblemGroup gid={groups[i].gid}
+                                    g_name={groups[i].g_name}
+                                    num_prob={groups[i].num_problems}
+                                    setGid={setGid}
+                                    setGName={setGName}/>);
     }
     const [groupList, setGroupList] = useState(elements)
 
     function addGroup() {
         let copy = [...groupList];
-        copy = [...copy, <ProblemGroup problem={{
-            g_name: "new exam",
-            num_prob: 0
-        }}/>];
+        copy = [...copy, <ProblemGroup gid={10}
+                                       g_name={"new exam"}
+                                       num_prob={0}
+                                       setGid={setGid}
+                                       setGName={setGName}/>];
         setGroupList(copy);
     }
 

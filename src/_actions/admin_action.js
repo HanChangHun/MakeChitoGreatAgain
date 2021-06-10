@@ -4,40 +4,65 @@ import {
     NAVIGATE_TO_PROBLEMS,
     NAVIGATE_TO_EXAMS,
 } from './types';
+import problems from "./problems.json"
+import exam_info from "./exam_info.json"
 
-const adminState = {
-    flag: 0,
-    groups: [],
-    examInfo: []
+let flag = 0
+let problemList = problems
+let examInfo = exam_info
+
+export function getProblems(gid) {
+    for (let i = 0; i < problemList.length; i++) {
+        if (problemList[i].gid === gid) {
+            return problemList[i].problems
+        }
+    }
+    return []
+}
+
+export function getAllGroupInfo() {
+    let allGroupInfo = []
+    for (let i = 0; i < problemList.length; i++) {
+        allGroupInfo.push({
+            "gid": problemList[i].gid,
+            "g_name": problemList[i].g_name,
+            "num_problems": problemList[i].problems.length,
+        })
+    }
+    return allGroupInfo
+}
+
+export function getAllExamInfo() {
+    return examInfo
 }
 
 export function getFlag() {
     return {
         type: GET_FLAG,
-        payload: adminState.flag
+        payload: flag
     }
 }
 
 export function toGroupSelect() {
-    adminState.flag=0;
+    flag = 0;
     return {
         type: NAVIGATE_TO_GROUP,
-        payload: adminState
+        payload: flag
     }
 }
 
 export function toEditProblem() {
-    adminState.flag=1;
+    flag = 1;
     return {
         type: NAVIGATE_TO_PROBLEMS,
-        payload: adminState
+        payload: flag
     }
 }
 
 export function toExamSelect() {
-    adminState.flag=2;
+    flag = 2;
     return {
         type: NAVIGATE_TO_EXAMS,
-        payload: adminState
+        payload: flag
     }
 }
