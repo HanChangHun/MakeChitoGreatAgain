@@ -108,8 +108,9 @@ export const FinalProblemInfo = ({problem, variance, ...props}) => {
     }
 
     function hintOnClick() {
-        if (cookie.load("hint") && cookie.load("hint") > props.usedHint) {
+        if (cookie.load("hint") && props.Hint > 0) {
             props.setUsedHint(props.usedHint + 1)
+            props.setHint(props.Hint - 1)
             setHint2(hint);
         }
     }

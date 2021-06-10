@@ -40,7 +40,8 @@ function FinalExamBody({g_name, problems, answers, ...props}) {
     let problem_comps = []
     for (let i = 0; i < problems.length; i++) {
         problem_comps.push(<FinalProblemInfo variance={"exam"} problem={problems[i]}
-                                             usedHint={usedHint} setUsedHint={setUsedHint}/>)
+                                             usedHint={usedHint} setUsedHint={setUsedHint}
+                                             Hint={Hint} setHint={setHint}/>)
     }
 
     function scoreGrade(score) {
