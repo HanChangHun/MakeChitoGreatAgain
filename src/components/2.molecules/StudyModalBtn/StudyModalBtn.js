@@ -24,7 +24,6 @@ const modalStyles = {
     }
 };
 
-
 function StudyModalBtn({params}) {
     const dispatch = useDispatch();
 

@@ -24,8 +24,7 @@ const modalStyles = {
     }
 };
 
-
-function InterviewModalBtn({params, ...props}) {
+function InterviewModalBtn({params}) {
     const dispatch = useDispatch();
 
     const [modalIsOpen, setIsOpen] = useState(false);
