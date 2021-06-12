@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import MidtermBg from "../../0.particle/BgImages/MidtermBg.png"
 
-const StyledMidtermPage = styled.div.attrs({className:'page-container page'})`
+const StyledMidtermPage = styled.div.attrs({className: 'page-container page'})`
   backgroundSize: cover;
   overflow: hidden;
   display: -ms-flex;
@@ -10,6 +10,7 @@ const StyledMidtermPage = styled.div.attrs({className:'page-container page'})`
   background: url(${MidtermBg}) no-repeat center fixed;
   background-size: 100% 100%;
   height: 100vh;
+  user-select: none;
 `;
 
 export default StyledMidtermPage

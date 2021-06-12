@@ -7,12 +7,14 @@ export function setStatus(params, chito, grade, hint) {
 
     let year = parseInt(chito.week / 32) + 1
     let semester = parseInt((chito.week % 32) / 16) + 1
-    let week = (chito.week % 32) % 16
+    let week = chito.week % 16
 
-    if (chito.week % 16 === 0) {
-        semester = semester - 1
+    if (week === 0) {
         week = 16
-        if (chito.week % 32 === 0) {
+        if (semester === 2) {
+            semester = 1
+        } else {
+            semester = 2
             year = year - 1
         }
     }

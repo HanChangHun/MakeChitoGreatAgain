@@ -10,6 +10,7 @@ const StyledMainPage = styled.div.attrs({className: 'page-container page'})`
   background: url(${MainPageBg}) no-repeat center fixed;
   background-size: 100% 100%;
   height: 100vh;
+  user-select: none;
 
   .logout {
     margin-left: auto;

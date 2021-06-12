@@ -8,6 +8,7 @@ import cookie from "react-cookies";
 
 function FinalPage() {
     let examInfo = getExamInfo(parseInt(cookie.load('semester') - 1))
+    console.log(examInfo)
     let problems = getProblems(examInfo.gid)
     const shuffled = problems.problems.sort(() => 0.5 - Math.random());
     let final_problems = shuffled.slice(0, examInfo.num_problem);

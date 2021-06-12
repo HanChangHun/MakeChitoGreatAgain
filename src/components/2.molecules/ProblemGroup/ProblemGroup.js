@@ -6,7 +6,7 @@ import {withRouter} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {toEditProblem} from "../../../_actions/admin_action";
 
-function ProblemGroup(props, {g_name, num_prob}) {
+function ProblemGroup({gid, g_name, num_prob, setGid, setGName, ...props}) {
     const dispatch = useDispatch();
 
     const [deleteClicked, setDeleteClicked] = useState(0);
@@ -22,6 +22,8 @@ function ProblemGroup(props, {g_name, num_prob}) {
     const editGroup = (event) => {
         event.preventDefault();
         dispatch(toEditProblem())
+        setGid(gid)
+        setGName(g_name)
         props.history.push('/admin')
     }
 

@@ -4,10 +4,11 @@ import {Text} from "../../1.atoms/Text/Text";
 import {Button} from "../../1.atoms/Button/Button";
 import {GroupNameEdit} from "../../1.atoms/InputText/GroupNameEdit/GroupNameEdit";
 import {FinalProblemInfo} from "../../2.molecules/FinalProblemInfo/FinalProblemInfo";
-import {array} from "prop-types";
-import sample_data from './sample_prob_data.json'
+import {getProblems} from "../../../_actions/admin_action";
 
-export const AdminProbBody = ({g_name, problems}) => {
+export const AdminProbBody = ({gid, g_name}) => {
+    let problems = getProblems(gid)
+    console.log(problems)
     let problem_comps = []
     for (let i = 0; i < problems.length; i++) {
         problem_comps.push(<FinalProblemInfo variance={"admin"} problem={problems[i]}/>)
@@ -47,7 +48,7 @@ export const AdminProbBody = ({g_name, problems}) => {
 
     const addProblem = () => {
         let copy = [...problemList];
-        copy = [...copy, <FinalProblemInfo problem={{
+        copy = [...copy, <FinalProblemInfo variance={"admin"} problem={{
             q_body: "",
             s1_body: "",
             s2_body: "",
@@ -78,11 +79,6 @@ export const AdminProbBody = ({g_name, problems}) => {
     </StyledAdminProbBody>);
 };
 
-AdminProbBody.propTypes = {
-    g_name: String,
-    problems: array
-};
+AdminProbBody.propTypes = {};
 
-AdminProbBody.defaultProps = {
-    problems: sample_data.problems
-};
+AdminProbBody.defaultProps = {};

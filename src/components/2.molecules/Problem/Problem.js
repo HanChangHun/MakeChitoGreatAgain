@@ -118,6 +118,9 @@ function Problem(props) {
 
     function toMain(e) {
         e.preventDefault()
+        cookie.remove("max_health")
+        cookie.remove("sleepy")
+        cookie.remove("damage")
         props.history.push('/main')
 
         dispatch(midtermEnd(cookie.load("token"), numHint(RecordTime))).then(response => {

@@ -39,6 +39,7 @@ function MainPage(props) {
     const dispatch = useDispatch();
     dispatch(auth(cookie.load("token"))).then(response => {
         if (response.payload.username === "admin") {
+            props.history.push("/admin")
             return 0
         } else {
             setStatus(passParams, response.payload.chito, response.payload.average, response.payload.hint)

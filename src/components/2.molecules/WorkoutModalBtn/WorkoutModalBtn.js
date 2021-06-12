@@ -24,8 +24,7 @@ const modalStyles = {
     }
 };
 
-
-function WorkoutModalBtn({params, ...props}) {
+function WorkoutModalBtn({params}) {
     const dispatch = useDispatch();
 
     const [modalIsOpen, setIsOpen] = useState(false);

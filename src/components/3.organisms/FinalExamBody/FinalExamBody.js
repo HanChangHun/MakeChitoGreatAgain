@@ -81,6 +81,7 @@ function FinalExamBody({g_name, problems, answers, ...props}) {
 
     function toMain(e) {
         e.preventDefault()
+        cookie.remove('semester')
         props.history.push('/main')
 
         dispatch(finalEnd(cookie.load("token"), grade, usedHint)).then(response => {

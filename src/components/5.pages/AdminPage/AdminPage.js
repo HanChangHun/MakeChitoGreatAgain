@@ -6,17 +6,11 @@ import AdminSidebar from "../../2.molecules/AdminSidebar/AdminSidebar";
 import AdminGroupBody from "../../3.organisms/AdminGroupBody/AdminGroupBody";
 import {AdminProbBody} from "../../3.organisms/AdminProbBody/AdminProbBody";
 import {AdminExamBody} from "../../3.organisms/AdminExamBody/AdminExamBody";
-import {array, number} from "prop-types";
-import {useDispatch} from "react-redux";
-import {getFlag} from "../../../_actions/admin_action";
-import sample_group_data from './sample_groups_data.json'
-import sample_prob_data from './sample_prob_data.json'
-import sample_exam_data from './sample_exam_info.json'
+import {getAllExamInfo, getAllGroupInfo, getFlag} from "../../../_actions/admin_action";
 
-function AdminPage({groups, problems, exam_info}) {
-    const dispatch = useDispatch();
-
-    const [gName, setGName] = useState("Software Development Life Cycle (SDLC)")
+function AdminPage() {
+    const [gid, setGid] = useState(null)
+    const [gName, setGName] = useState(null)
 
     if (getFlag().payload === 0) {
         return (<StyledFinalPage>
@@ -24,7 +18,7 @@ function AdminPage({groups, problems, exam_info}) {
                 <AdminHeader/>
                 <div className={"main-body"}>
                     <AdminSidebar/>
-                    <AdminGroupBody groups={groups}/>
+                    <AdminGroupBody groups={getAllGroupInfo()} setGid={setGid} setGName={setGName}/>
                 </div>
             </div>
         </StyledFinalPage>);
@@ -34,7 +28,7 @@ function AdminPage({groups, problems, exam_info}) {
                 <AdminHeader/>
                 <div className={"main-body"}>
                     <AdminSidebar/>
-                    <AdminProbBody g_name={gName} problems={problems}/>
+                    <AdminProbBody gid={gid} g_name={gName}/>
                 </div>
             </div>
         </StyledFinalPage>);
@@ -44,25 +38,15 @@ function AdminPage({groups, problems, exam_info}) {
                 <AdminHeader/>
                 <div className={"main-body"}>
                     <AdminSidebar/>
-                    <AdminExamBody exam_info={exam_info}/>
+                    <AdminExamBody exam_info={getAllExamInfo()}/>
                 </div>
             </div>
         </StyledFinalPage>);
     }
 }
 
-AdminPage.propTypes = {
-    flag: number,
-    groups: array,
-    problems: array,
-    exam_info: array
-};
+AdminPage.propTypes = {};
 
-AdminPage.defaultProps = {
-    flag: 0,
-    groups: sample_group_data.groups,
-    problems: sample_prob_data.problems,
-    exam_info: sample_exam_data
-};
+AdminPage.defaultProps = {};
 
 export default withRouter(AdminPage);
